@@ -121,6 +121,41 @@
             display: inline-block;
         }
 
+        /* Стилі для розділу з гравцями / вищим керівництвом */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .staff-card {
+            background: #0f172a;
+            border: 1px solid var(--accent-blue);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .staff-role {
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .staff-info {
+            color: var(--text-main);
+            font-size: 0.95em;
+            line-height: 1.8;
+            text-align: left;
+            background: #1e293b;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -140,7 +175,83 @@
         <div class="subtitle">Офіційний нормативно-правовий збірник сервера Emergency Hamburg [UA] (У союзі з UKRAINE RP)</div>
     </header>
 
-    <div class="main-category">🏛️ ЧАСТИНА I. КОНСТИТУЦІЯ СЕРВЕРА</div>
+    <div class="main-category">👑 ЧАСТИНА I. КЕРІВНИЦТВО ТА ВИСОКОПОСАДОВЦІ СЕРВЕРА</div>
+
+    <div class="section">
+        <h2 class="section-title">Склад Вищої Адміністрації</h2>
+        <div class="staff-grid">
+            
+            <div class="staff-card">
+                <div class="staff-role">👑 Засновник Сервера</div>
+                <div class="staff-info">
+                    <b>Roblox Nick:</b> Stas_po12<br>
+                    <b>Telegram:</b> @Ckvnio<br>
+                    <b>Повноваження:</b> Абсолютна юрисдикція, затвердження законів, контроль адміністрації.
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-role">⭐ Власник Сервера</div>
+                <div class="staff-info">
+                    <b>Roblox Nick:</b> Pulsarchik_RP<br>
+                    <b>Telegram:</b> Не вказано<br>
+                    <b>Повноваження:</b> Управління технічною частиною, контроль фракцій та порядку.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="main-category">🛡️ ЧАСТИНА II. РЕГЛАМЕНТ СПЕЦПІДРОЗДІЛІВ (СБС ТА ДБР)</div>
+
+    <div class="section">
+        <h2 class="section-title">1. СБС — Служба Безпеки Сервера</h2>
+        <div class="article">
+            <div class="article-title">1.1. Загальне положення та сфери діяльності</div>
+            <div class="article-desc">СБС є головним органом внутрішньої безпеки. Служба працює над виявленням читерів, загрозами доксингу, витоком адмін-інформації, спробами шпигунства та масовими порушеннями порядку на сервері.</div>
+        </div>
+        <div class="article">
+            <div class="article-title">1.2. Повноваження оперативників СБС</div>
+            <div class="article-desc">
+                <ul>
+                    <li>Проведення перевірок гравців та службовців на наявність забороненого ПЗ/софту.</li>
+                    <li>Контроль дотримання безпеки особистих даних гравців (анти-доксинг).</li>
+                    <li>Право на безперешкодний доступ до будь-яких закритих об'єктів для ліквідації загрози.</li>
+                    <li>Тимчасове відсторонення посадових осіб у разі підозри в державній зраді або зливі даних.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="article">
+            <div class="article-title">1.3. Відповідальність та обмеження</div>
+            <div class="article-desc">Співробітники СБС підпорядковуються виключно Засновнику та Власнику сервера. Перевищення повноважень СБС карається депортацією.</div>
+            <div class="punishment">Покарання за перевищення: Штраф 16 000 грн / Депортація</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">2. ДБР — Державне Бюро Розслідувань</h2>
+        <div class="article">
+            <div class="article-title">2.1. Сфера діяльності ДБР</div>
+            <div class="article-desc">ДБР розслідує злочини, вчинені вищими посадовими особами, працівниками правоохоронних органів (поліції, держслужб), а також справи про корупцію, хабарництво, "блат" та перевищення службових повноважень.</div>
+        </div>
+        <div class="article">
+            <div class="article-title">2.2. Повноваження слідчих ДБР</div>
+            <div class="article-desc">
+                <ul>
+                    <li>Відкриття кримінальних проваджень проти співробітників будь-яких держструктур.</li>
+                    <li>Проведення допитів, обшуків та затримань держслужбовців-порушників.</li>
+                    <li>Збір доказів для передачі справи до Суду сервера.</li>
+                    <li>Запитування оперативних відеофіксацій від будь-якого патрульного чи держслужбовця.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="article">
+            <div class="article-title">2.3. Взаємодія з судовою системою</div>
+            <div class="article-desc">Усі зібрані ДБР матеріали передаються до Суду. Без рішення суду або ордера ДБР не може ув'язнити держслужбовця на тривалий термін (крім випадків затримання на гарячому).</div>
+        </div>
+    </div>
+
+    <div class="main-category">🏛️ ЧАСТИНА III. КОНСТИТУЦІЯ СЕРВЕРА</div>
 
     <div class="section">
         <h2 class="section-title">1. Основні положення</h2>
@@ -162,108 +273,23 @@
         </div>
         <div class="article">
             <div class="article-title">2.2. Незмінність статусу</div>
-            <div class="article-desc">Власник сервера не може бути позбавлений повноважень за жодних обставин. Всі остаточні рішення адміністрації приймаються через власника.</div>
+            <div class="article-desc">Власник сервера не може бути позбавлений повноважень за жодних обставин. Всі остаточні рішення приймаються керівництвом.</div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">3. Органи законодавчої та виконавчої влади</h2>
+        <h2 class="section-title">3. Організація Суду та Затримань</h2>
         <div class="article">
-            <div class="article-title">3.1. Адміністрація сервера</div>
-            <div class="article-desc">Адміністрація є позаігровим органом, який забезпечує технічний та організаційний контроль. Втручання в RP без причини заборонено.</div>
+            <div class="article-title">3.1. Права затриманого</div>
+            <div class="article-desc">Кожен затриманий має право на ознайомлення з причиною затримання, адвоката, телефонний дзвінок та належні умови перебування.</div>
         </div>
         <div class="article">
-            <div class="article-title">3.2. Керівництво фракцій</div>
-            <div class="article-desc">Лідер та заступники фракцій зобов'язані стежити за дотриманням статутів, проводити набори та забезпечувати роботу структур.</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">4. Судова система</h2>
-        <div class="article">
-            <div class="article-title">4.1. Незалежність суду</div>
-            <div class="article-desc">Суд є незалежним органом. Судді приймають рішення на основі доказаної вини, Конституції та Законів сервера.</div>
-        </div>
-        <div class="article">
-            <div class="article-title">4.2. Права на захист та адвокатуру</div>
-            <div class="article-desc">Особа вважається невинуватою, доки її вину не буде доведено в судовому порядку. Затриманий має право на адвоката.</div>
+            <div class="article-title">3.2. Компенсація за незаконний арешт</div>
+            <div class="article-desc">Якщо провину затриманого не доведено в суді, гравець має право на компенсацію витрат та моральної шкоди з бюджету фракції/поліції.</div>
         </div>
     </div>
 
-    <div class="section">
-        <h2 class="section-title">5. Права та обов'язки громадян</h2>
-        <div class="article">
-            <div class="article-title">5.1. Гарантія свобод</div>
-            <div class="article-desc">Кожен гравець має право на вільний рух, недоторканність майна, отримання медичної допомоги та правову підтримку.</div>
-        </div>
-        <div class="article">
-            <div class="article-title">5.2. Обов'язок дотримання RP</div>
-            <div class="article-desc">Кожен гравець зобов'язаний дотримуватися рольового режиму, поважати честь та гідність інших гравців.</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">6. Підприємництво та праця</h2>
-        <div class="article">
-            <div class="article-title">6.1. Свобода праці</div>
-            <div class="article-desc">Кожен має право на підприємницьку діяльність, легальний заробіток та укладення трудових договорів.</div>
-        </div>
-        <div class="article">
-            <div class="article-title">6.2. Захист від незаконного вимагання</div>
-            <div class="article-desc">Заборонено незаконне вилучення майна або бізнесу без відповідного рішення суду чи узгодження з адміністрацією.</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">7. Відповідальність, компенсації та статус новачків</h2>
-        <div class="article">
-            <div class="article-title">7.1. Порядок покарань</div>
-            <div class="article-desc">Адміністрація застосовує покарання залежно від тяжкості проступку: Попередження, Штраф, Деморган, Виправні роботи, Депортація.</div>
-        </div>
-        <div class="article">
-            <div class="article-title">7.2. Система компенсацій</div>
-            <div class="article-desc">У разі неправомірного арешту, вилучення майна або помилкового бан-покарання, гравець має право на компенсацію з ігрового бюджету/фракції.</div>
-        </div>
-        <div class="article">
-            <div class="article-title">7.3. Статус Новачка</div>
-            <div class="article-desc">Акаунти віком до 30 днів вважаються новачками. До них застосовуються пом'якшені правила, крім випадків грубого читерства або доксингу.</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">8. Мерія та виборна система</h2>
-        <div class="article">
-            <div class="article-title">8.1. Вибори мера</div>
-            <div class="article-desc">Мер обирається шляхом відкритого або таємного голосування громадян. Термін повноважень регулюється регламентом.</div>
-        </div>
-        <div class="article">
-            <div class="article-title">8.2. Повноваження мера</div>
-            <div class="article-desc">Мер має право видавати укази, регулювати податкові ставки та розпоряджатися бюджетними коштами у межах закону.</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">9. Затримані та арештовані</h2>
-        <div class="article">
-            <div class="article-title">9.1. Права затриманого</div>
-            <div class="article-desc">Затриманий має право знати причину арешту, вимагати зачитання Міранди, отримати медичну допомогу та телефонний дзвінок.</div>
-        </div>
-        <div class="article">
-            <div class="article-title">9.2. Заборона катувань</div>
-            <div class="article-desc">Катування, психологічний тиск та приниження затриманих суворо заборонені правоохоронним органам.</div>
-            <div class="punishment">Покарання: Догана / Штраф 16 000 грн / Звільнення з ЧС</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">10. Журналістика, преса та контентмейкерство</h2>
-        <div class="article">
-            <div class="article-title">10.1. Свобода слова та ЗМІ</div>
-            <div class="article-desc">Журналісти мають право вести репортажі, брати інтерв'ю та висвітлювати події. Заборонено поширення завідомо неправдивої інформації (дезінформації).</div>
-        </div>
-    </div>
-
-    <div class="main-category">📋 ЧАСТИНА II. ЗАГАЛЬНИЙ РЕГЛАМЕНТ ТА ПРАВИЛА СЕРВЕРА</div>
+    <div class="main-category">📋 ЧАСТИНА IV. ЗАГАЛЬНИЙ РЕГЛАМЕНТ ТА ПРАВИЛА СЕРВЕРА</div>
 
     <div class="section">
         <h2 class="section-title">1. Повага, антибулінг та особистий простір</h2>
@@ -272,29 +298,14 @@
             <div class="article-desc">Заборонено будь-які прояви булінгу, приниження гідності, образи гравців у OOC та IC чатах, розпалювання конфліктів.</div>
             <div class="punishment">Покарання: Мут від 60 хв до депортації на 7 діб</div>
         </div>
-        <div class="article">
-            <div class="article-title">1.2. Неповага до Адміністрації</div>
-            <div class="article-desc">Образа, провокації або невиконання вказівок адміністратора під час вирішення конфліктів.</div>
-            <div class="punishment">Покарання: Мут 120 хв / Депорт від 3 до 14 діб</div>
-        </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">🚘 2. ПДР — Правила Дорожнього Руху (Розширений список)</h2>
+        <h2 class="section-title">🚘 2. ПДР — Правила Дорожнього Руху</h2>
         <div class="article">
             <div class="article-title">Стаття 1. Паркування в заборонених місцях</div>
             <div class="article-desc">Заборонено залишати ТЗ на тротуарах, переходах, зупинках, газонах, мостах, тунелях, переїздах та виїздах спецтранспорту.</div>
             <div class="punishment">Покарання: Штраф 4 000 грн або попередження</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 2. Розворот у заборонених місцях</div>
-            <div class="article-desc">Заборонено розворот на переходах, мостах, у тунелях та залізничних переїздах.</div>
-            <div class="punishment">Покарання: Штраф 3 000 грн або попередження</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 3. В'їзд на територію установ</div>
-            <div class="article-desc">В'їзд на приватні чи державні території без дозволу.</div>
-            <div class="punishment">Покарання: Штраф 5 000 грн / Евакуація / Депорт на добу</div>
         </div>
         <div class="article">
             <div class="article-title">Стаття 4. Їзда по зустрічній смузі</div>
@@ -302,68 +313,18 @@
             <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
         </div>
         <div class="article">
-            <div class="article-title">Стаття 7. Швидкісний режим</div>
-            <div class="article-desc">Перевищення дозволеної швидкості у місті, фіксоване радарами або патрулем.</div>
-            <div class="punishment">Покарання: Штраф 5 000 грн</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 8. Перетин залізничних переїздів</div>
-            <div class="article-desc">Проїзд через колії на закритий шлагбаум чи заборонений сигнал.</div>
-            <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
-        </div>
-        <div class="article">
             <div class="article-title">Стаття 10. NonRP Drive (NRD)</div>
             <div class="article-desc">Їзда по полях, горах, піску, коліях на непридатних для цього авто (легкові, спорткари).</div>
             <div class="punishment">Покарання: Деморган 60 хв / Штраф 10 000 грн</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 11. Рух заднім ходом</div>
-            <div class="article-desc">Заборонено рух заднім ходом на перехрестях, тунелях, автомагістралях.</div>
-            <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 12. Пішохідні переходи</div>
-            <div class="article-desc">Водій зобов'язаний зменшити швидкість та пропустити пішохода на переході.</div>
-            <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 15. Звукові сигнали</div>
-            <div class="article-desc">Безпідставне використання клаксона (гудка).</div>
-            <div class="punishment">Покарання: Штраф 6 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 16. ДТП та зникнення з місця</div>
-            <div class="article-desc">Втеча з місця аварії без оформлення поліцією.</div>
-            <div class="punishment">Покарання: Штраф 6 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 24. Заборона дрифту</div>
-            <div class="article-desc">Умисний дрифт на дорогах загального користування.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 28. Використання несправних ТЗ</div>
-            <div class="article-desc">Рух на дисках без шин, з пробитими колесами чи палаючим мотором.</div>
-            <div class="punishment">Покарання: Штраф 5 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 31. Рух у колоні зі спецтранспортом</div>
-            <div class="article-desc">Блокування або вклинювання у колону спецтранспорту із маячками.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 32-33. Номерні знаки</div>
-            <div class="article-desc">Їзда без номерів, підробка або їх приховування.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
         </div>
     </div>
 
     <div class="section">
         <h2 class="section-title">🛑 3. Використання читів та багів</h2>
         <div class="article">
-            <div class="article-title">3.1. Використання стороннього ПЗ</div>
-            <div class="article-desc">Використання будь-яких читів, скриптів чи програм для переваги (Fly, TP, SpeedHack).</div>
-            <div class="punishment">Покарання: Безстрокова депортація (Перманентний бан)</div>
+            <div class="article-title">3.1. Стороннє ПЗ</div>
+            <div class="article-desc">Використання читів (Fly, TP, SpeedHack, Aimbot тощо).</div>
+            <div class="punishment">Покарання: Перманентний бан (Безстрокова депортація)</div>
         </div>
         <div class="article">
             <div class="article-title">3.2. Багоюз</div>
@@ -373,136 +334,11 @@
     </div>
 
     <div class="section">
-        <h2 class="section-title">👮 4. Службові обов'язки (Фракції)</h2>
+        <h2 class="section-title">🔒 4. Безпека та Доксинг</h2>
         <div class="article">
-            <div class="article-title">Стаття 1. Виконання обов'язків</div>
-            <div class="article-desc">Працівники МВС, МОЗ, ДСНС зобов'язані серйозно виконувати обов'язки. Заборонено використовувати мигалки/зброю для розваг.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн або депорт до 3 діб</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 2. Зловживання становищем</div>
-            <div class="article-desc">Блат, допомога злочинцям, видача штрафів чи розшуку без причини.</div>
-            <div class="punishment">Покарання: Депорт до 3 діб + звільнення з ЧС</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 3. Неправомірне використання спецсигналів</div>
-            <div class="article-desc">Увімкнення СГУ та люстри без виконання екстреного виклику.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 11. Мовний регламент</div>
-            <div class="article-desc">Співробітники під час виконання обов'язків зобов'язані спілкуватися виключно українською мовою.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн або депорт до 3 діб</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">💥 5. Рейди</h2>
-        <div class="article">
-            <div class="article-title">Несанкціоновані рейди</div>
-            <div class="article-desc">Проведення рейдів та масових нападів без вагомої RP-причини та схвалення Адміністрацією.</div>
-            <div class="punishment">Покарання: Безстрокова депортація</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">🎭 6. Non-RP поведінка та RP-процес</h2>
-        <div class="article">
-            <div class="article-title">Основні терміни порушень</div>
-            <div class="article-desc">
-                <ul>
-                    <li><b>OffRP / LeaveRP:</b> Вихід із гри під час RP-процесу або арешту.</li>
-                    <li><b>MG (MetaGaming):</b> Використання OOC інформації в IC.</li>
-                    <li><b>PG (PowerGaming):</b> Гра у «супергероя» (1 проти 3).</li>
-                    <li><b>DM / DB:</b> Вбивство без причини / таран транспортом.</li>
-                    <li><b>SK / TK:</b> Спавнкілл / вбивство своїх колег.</li>
-                    <li><b>Cuff Rush:</b> Кайданки під час лобової перестрілки.</li>
-                    <li><b>NVL:</b> Нехтування цінністю свого життя під прицілом.</li>
-                </ul>
-            </div>
-            <div class="punishment">Покарання: Деморган 60-180 хв / Депорт від 1 до 5 діб</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">🟩 7. Green Zone (Зелена Зона)</h2>
-        <div class="article">
-            <div class="article-title">Правила Зеленої Зони</div>
-            <div class="article-desc">У ЗЗ (Лікарня, Поліція, ДСНС, Спавни, СТО, Заправки) повністю заборонено: стріляти, завдавати шкоди, грабувати, тікати у ЗЗ від погоні.</div>
-            <div class="punishment">Покарання: Депорт до 3 діб (при повторенні — до 7 діб)</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">🚫 8. Поширення ворожої пропаганди</h2>
-        <div class="article">
-            <div class="article-title">Пропаганда та символіка ворога</div>
-            <div class="article-desc">Виправдання російської агресії, використання символів Z, V, прапорів РФ чи нацистської символіки.</div>
-            <div class="punishment">Покарання: Безстрокова депортація (Перманентний бан)</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">🔫 9. Зброя та ліцензії</h2>
-        <div class="article">
-            <div class="article-title">Стаття 1. Носіння зброї у відкритому вигляді</div>
-            <div class="article-desc">Носіння зброї в руках у людних місцях без прямої загрози життю.</div>
-            <div class="punishment">Покарання: Вилучення ліцензії + Штраф 9 000 грн</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 2. Неправомірне використання зброї</div>
-            <div class="article-desc">Стрільба в повітря, стіни або по колесах без вагомої RP-причини.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн + депорт</div>
-        </div>
-        <div class="article">
-            <div class="article-title">Стаття 3. Нелегальна зброя</div>
-            <div class="article-desc">Купівля, носіння чи продаж зброї без офіційної ліцензії.</div>
-            <div class="punishment">Покарання: Депорт на 3 доби + конфіскація</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">🔒 10. Безпека та Доксинг</h2>
-        <div class="article">
-            <div class="article-title">10.1. Злив даних (Doxing)</div>
+            <div class="article-title">4.1. Злив даних (Doxing)</div>
             <div class="article-desc">Поширення особистих даних гравців (ПІБ, фото, номери телефонів, адреси).</div>
             <div class="punishment">Покарання: Безстроковий бан</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">💸 11. Корупція</h2>
-        <div class="article">
-            <div class="article-title">Дача та отримання хабарів</div>
-            <div class="article-desc">Вимагання, дача або посередництво у хабарництві без схваленої BadCop біографії.</div>
-            <div class="punishment">Покарання: Штраф 16 000 грн + звільнення з ЧС</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">🗡️ 12. ОЗУ (Організовані злочинні угруповання)</h2>
-        <div class="article">
-            <div class="article-title">Захоплення заручників та напади</div>
-            <div class="article-desc">Максимальна кількість заручників — 3 особи. Викуп за людину залежить від посади (макс. 10 000 - 20 000 грн). Напади мають бути спланованими.</div>
-            <div class="punishment">Покарання: Депорт від 5 до 10 діб</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">🚖 13. Таксі</h2>
-        <div class="article">
-            <div class="article-title">Ліцензія та поведінка таксистів</div>
-            <div class="article-desc">Таксисти зобов'язані мати ліцензію через бота, дотримуватися фіксованих цін та бути ввічливими з пасажирами.</div>
-            <div class="punishment">Покарання: Штраф 8 000 грн / Позбавлення ліцензії</div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2 class="section-title">📜 14. Порушення Конституції сервера</h2>
-        <div class="article">
-            <div class="article-title">Нехтування нормами права</div>
-            <div class="article-desc">Будь-яке умисне порушення норм, прав чи обов'язків, закріплених у Конституції сервера.</div>
-            <div class="punishment">Покарання: Депортація від 2 до 14 днів або Перманентний бан</div>
         </div>
     </div>
 
@@ -511,9 +347,6 @@
     </footer>
 
 </div>
-
-</body>
-</html>
 
 </body>
 </html>
