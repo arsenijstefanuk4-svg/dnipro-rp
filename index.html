@@ -6,13 +6,14 @@
     <title>Законодавство та Правила | Dnipro RP 🇺🇦</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
+            --bg-color: #0b0f19;
+            --card-bg: #151d2a;
             --accent-blue: #38bdf8;
             --accent-yellow: #f59e0b;
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
-            --fine-color: #ef4444;
+            --fine-color: #f87171;
+            --border-color: #1e293b;
         }
 
         body {
@@ -26,87 +27,89 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
         }
 
         header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 35px 20px;
             background: var(--card-bg);
             border-radius: 16px;
             margin-bottom: 25px;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
         h1 {
             color: var(--accent-blue);
             margin: 0 0 10px 0;
-            font-size: 2.2em;
+            font-size: 2.4em;
             text-transform: uppercase;
         }
 
         .subtitle {
             color: var(--text-sub);
-            font-size: 1em;
+            font-size: 1.05em;
         }
 
         .section {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #334155;
+            padding: 22px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
         }
 
         .section-title {
             color: var(--accent-yellow);
-            font-size: 1.4em;
-            border-bottom: 2px solid #334155;
+            font-size: 1.45em;
+            border-bottom: 2px solid var(--border-color);
             padding-bottom: 8px;
             margin-top: 0;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 18px;
         }
 
         .article {
             background: #0f172a;
             border-left: 4px solid var(--accent-blue);
-            padding: 12px 16px;
-            margin-bottom: 12px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
             border-radius: 0 8px 8px 0;
         }
 
         .article-title {
             font-weight: bold;
             color: var(--text-main);
-            font-size: 1.05em;
-            margin-bottom: 5px;
+            font-size: 1.1em;
+            margin-bottom: 6px;
         }
 
         .article-desc {
             color: #cbd5e1;
             font-size: 0.95em;
-            line-height: 1.4;
+            line-height: 1.5;
+        }
+
+        .article-desc ul {
+            margin: 6px 0 6px 20px;
+            padding: 0;
         }
 
         .punishment {
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 0.9em;
             color: var(--fine-color);
             font-weight: 600;
-            background: rgba(239, 68, 68, 0.1);
-            padding: 4px 8px;
+            background: rgba(248, 113, 113, 0.1);
+            padding: 5px 10px;
             border-radius: 4px;
             display: inline-block;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             color: var(--text-sub);
             font-size: 0.9em;
         }
@@ -117,89 +120,319 @@
 <div class="container">
 
     <header>
-        <h1>📜 Dnipro RP | Правила та Статті</h1>
-        <div class="subtitle">Офіційне законодавство та регламент сервера (У союзі з UKRAINE RP)</div>
+        <h1>📜 Dnipro RP | Правила та Законодавство</h1>
+        <div class="subtitle">Повний розширений регламент сервера Emergency Hamburg [UA] (У союзі з UKRAINE RP)</div>
     </header>
 
     <div class="section">
-        <h2 class="section-title">🚘 1. ПДР — Правила Дорожнього Руху</h2>
+        <h2 class="section-title">1. Повага, Адекватність та Особистий Простір</h2>
+        <div class="article">
+            <div class="article-title">1.1. Заборона булінгу та аморальної поведінки</div>
+            <div class="article-desc">Суворо заборонено травлю, приниження людської гідності, цькування, переслідування та аморальні дії щодо будь-кого з учасників проєкту.</div>
+            <div class="punishment">Покарання: Мут 60-120 хв / Депортація від 1 до 7 діб</div>
+        </div>
+        <div class="article">
+            <div class="article-title">1.2. Неповага до Адміністрації та Модерації</div>
+            <div class="article-desc">Заборонено образу, провокації, перешкоджання роботі чи невиконання вимог адміністраторів під час виклику.</div>
+            <div class="punishment">Покарання: Мут 120 хв / Депортація від 3 до 14 діб</div>
+        </div>
+        <div class="article">
+            <div class="article-title">1.3. Розпалювання конфліктів у чатах</div>
+            <div class="article-desc">Навмисний провокаційний флуд, токсичність та з'ясування стосунків у загальних чатах.</div>
+            <div class="punishment">Покарання: Мут 30-90 хв</div>
+        </div>
+    </div>
 
+    <div class="section">
+        <h2 class="section-title">🚘 2. ПДР — Розширені Правила Дорожнього Руху</h2>
         <div class="article">
             <div class="article-title">Стаття 1. Паркування в заборонених місцях</div>
-            <div class="article-desc">Заборонено залишати ТЗ на тротуарах, пере переходах, зупинках, газонах, мостах, тунелях, залізничних переїздах та перед виїздами спецтранспорту.</div>
+            <div class="article-desc">Заборонено залишати ТЗ на тротуарах, переходах, зупинках, газонах, мостах, тунелях, коліях та виїздах спецтранспорту.</div>
             <div class="punishment">Покарання: Штраф 4 000 грн або попередження</div>
         </div>
-
         <div class="article">
             <div class="article-title">Стаття 2. Розворот у заборонених місцях</div>
-            <div class="article-desc">Заборонено розворот на пішохідних переходах, мостах, у тунелях та залізничних переїздах.</div>
+            <div class="article-desc">Заборонено розворот на пішохідних переходах, мостах, тунелях та залізничних переїздах.</div>
             <div class="punishment">Покарання: Штраф 3 000 грн або попередження</div>
         </div>
-
         <div class="article">
             <div class="article-title">Стаття 3. В'їзд на територію установ</div>
             <div class="article-desc">Заборонено заїжджати на приватні території та території держустанов без дозволу.</div>
             <div class="punishment">Покарання: Штраф 5 000 грн / Евакуація / Депорт на добу</div>
         </div>
-
         <div class="article">
             <div class="article-title">Стаття 4. Їзда по зустрічній смузі</div>
-            <div class="article-desc">Заборонено рух зустрічною смугою дороги (крім дозволеного обгону чи спецтранспорту).</div>
+            <div class="article-desc">Заборонено рух зустрічною смугою дороги (крім обгону у дозволених місцях або спецсигналів).</div>
             <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
         </div>
-
+        <div class="article">
+            <div class="article-title">Стаття 5. Проїзд на червоний сигнал світлофора</div>
+            <div class="article-desc">Заборонено проїзд на забороняючий сигнал світлофора або жест регулювальника.</div>
+            <div class="punishment">Покарання: Штраф 3 000 грн</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 6. Ненадавання переваги спецтранспорту</div>
+            <div class="article-desc">Водій зобов'язаний дати дорогу ТЗ із увімкненими сиренами та маячками (НПУ, СБУ, ДСНС, МОЗ).</div>
+            <div class="punishment">Покарання: Штраф 6 000 грн або депорт</div>
+        </div>
         <div class="article">
             <div class="article-title">Стаття 7. Швидкісний режим</div>
-            <div class="article-desc">Перевищення швидкості в населених пунктах, фіксоване радарами або патрульними.</div>
+            <div class="article-desc">Перевищення швидкості у населених пунктах, фіксоване радарами чи патрулем.</div>
             <div class="punishment">Покарання: Штраф 5 000 грн</div>
         </div>
-
         <div class="article">
-            <div class="article-title">Стаття 24. Заборона дрифту на дорогах</div>
-            <div class="article-desc">Заборонено умисний дрифт на загальних дорогах та перехрестях.</div>
+            <div class="article-title">Стаття 8. Перетин залізничних переїздах</div>
+            <div class="article-desc">Проїзд через колії на закритий шлагбаум чи заборонений сигнал.</div>
+            <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 9. Керування ТЗ у стані сп'яніння</div>
+            <div class="article-desc">Керування авто під впливом алкоголю чи наркотичних речовин.</div>
+            <div class="punishment">Покарання: Штраф 12 000 грн + позбавлення прав + арешт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 10. NRD (NonRP Drive)</div>
+            <div class="article-desc">Їзда по полях, горах, піску, залізничних коліях на непридатних для цього авто (легкові, спорткари).</div>
+            <div class="punishment">Покарання: Деморган 60 хв / Штраф 10 000 грн</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 11. Рух заднім ходом</div>
+            <div class="article-desc">Заборонено рух заднім ходом на перехрестях, тунелях, автомагістралях.</div>
+            <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 12. Пішохідні переходи</div>
+            <div class="article-desc">Водій зобов'язаний зменшити швидкість та пропустити пішохода на переході.</div>
+            <div class="punishment">Покарання: Штраф 4 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 15. Звукові сигнали</div>
+            <div class="article-desc">Заборонено безпідставне використання клаксона (гудка).</div>
+            <div class="punishment">Покарання: Штраф 6 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 16. ДТП та втеча з місця події</div>
+            <div class="article-desc">Зникнення з місця ДТП, відмова від оформлення чи невідшкодування збитків.</div>
+            <div class="punishment">Покарання: Штраф 6 000 грн або депорт від 3 діб</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 19. Поворот з неправильної смуги</div>
+            <div class="article-desc">Поворот праворуч/ліворуч або розворот не з крайнього відповідного положення.</div>
+            <div class="punishment">Покарання: Штраф 3 000 грн або попередження</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 24. Заборона дрифту</div>
+            <div class="article-desc">Заборонено умисний дрифт на дорогах загального користування.</div>
+            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 27. Посадка та висадка пасажирів</div>
+            <div class="article-desc">Висадка/посадка пасажирів у небезпечних місцях чи під час руху ТЗ.</div>
+            <div class="punishment">Покарання: Штраф 6 000 грн або депорт до 3 діб</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 28. Використання несправних ТЗ</div>
+            <div class="article-desc">Керування авто на дисках без шин, з пробитими колесами чи критичними пошкодженнями.</div>
+            <div class="punishment">Покарання: Штраф 5 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 31. Рух у колоні зі спецтранспортом</div>
+            <div class="article-desc">Заборонено вклинюватися або блокувати колону спецтранспорту із маячками.</div>
+            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 32-33. Номерні знаки</div>
+            <div class="article-desc">Їзда без номерів, підробка або їх умисне приховування/забруднення.</div>
             <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">🛑 2. Використання читів та багів</h2>
-
+        <h2 class="section-title">💻 3. Використання Читів, Багів та Стороннього ПЗ</h2>
         <div class="article">
-            <div class="article-title">Стаття 1. Використання читів / стороннього софту</div>
-            <div class="article-desc">Використання будь-яких програм для отримання переваги (Fly, TP, SpeedHack тощо).</div>
+            <div class="article-title">3.1. Сторонні програми та чити</div>
+            <div class="article-desc">Використання будь-якого софту (Fly, TP, SpeedHack, ESP, AimBot, Clicker тощо).</div>
             <div class="punishment">Покарання: Безстрокова депортація (Перманентний бан)</div>
         </div>
-
         <div class="article">
-            <div class="article-title">Стаття 2. Багоюз</div>
-            <div class="article-desc">Використання багів гри (прохід крізь стіни, дюп тощо).</div>
-            <div class="punishment">Покарання: Тимчасова або безстрокова депортація</div>
+            <div class="article-title">3.2. Використання уразливостей (Багоюз)</div>
+            <div class="article-desc">Використання багів карти чи текстур (дюп предметів, прохід крізь стіни, баг анімацій).</div>
+            <div class="punishment">Покарання: Депортація від 7 діб до перманентної</div>
+        </div>
+        <div class="article">
+            <div class="article-title">3.3. Приховування багів або читерів</div>
+            <div class="article-desc">Покривання гравців, які використовують чити або розповсюджують критичні баги.</div>
+            <div class="punishment">Покарання: Депортація від 14 діб</div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">👮 3. Службові обов'язки (Держструктури)</h2>
-
+        <h2 class="section-title">👮 4. Регламент державних структур (Фракції)</h2>
         <div class="article">
             <div class="article-title">Стаття 1. Виконання обов'язків</div>
-            <div class="article-desc">Працівники МВС, МОЗ, ДСНС зобов'язані чесно виконувати обов'язки. Заборонено використовувати мигалки/зброю для розваг.</div>
+            <div class="article-desc">Працівники МВС, МОЗ, ДСНС зобов'язані сумлінно виконувати обов'язки. Заборонено використовувати мигалки чи зброю задля розваг.</div>
             <div class="punishment">Покарання: Штраф 8 000 грн або депорт до 3 діб</div>
         </div>
-
         <div class="article">
             <div class="article-title">Стаття 2. Зловживання становищем</div>
-            <div class="article-desc">Блат, допомога злочинцям, видача розшуку без причини.</div>
-            <div class="punishment">Покарання: Депорт до 3 діб + звільнення</div>
+            <div class="article-desc">Блат, допомога злочинцям, зняття розшуку без підстав, видача штрафів для фарму.</div>
+            <div class="punishment">Покарання: Депорт до 3 діб + Звільнення з ЧС</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 3. Неправомірне використання спецсигналів</div>
+            <div class="article-desc">Увімкнення СГУ та проблескових маячків без виконання екстреного виклику.</div>
+            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 4. Правила патрулювання</div>
+            <div class="article-desc">Виїзд у патруль дозволено виключно у складі екіпажу від 2-х осіб у службовій формі та на патрульному ТЗ.</div>
+            <div class="punishment">Покарання: Догана / Штраф 5 000 грн</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 5. Зачитання правил Міранди</div>
+            <div class="article-desc">Кожен правоохоронець зобов'язаний зачитати права затриманому перед доставленням до КПЗ.</div>
+            <div class="punishment">Покарання: Штраф 6 000 грн / Догана</div>
         </div>
     </div>
 
     <div class="section">
-        <h2 class="section-title">🟩 4. Green Zone (Зелена Зона)</h2>
-
+        <h2 class="section-title">💥 5. Правила проведення рейдів</h2>
         <div class="article">
-            <div class="article-title">Стаття 1. Правила Зеленої Зони</div>
-            <div class="article-desc">У ЗЗ (лікарня, НПУ, ДСНС, спавни) заборонено: завдавати шкоди, грабувати, втікати у ЗЗ від погоні, носите зброю у відкритому вигляді.</div>
-            <div class="punishment">Покарання: Депорт до 3 діб</div>
+            <div class="article-title">5.1. Несанкціоновані рейди</div>
+            <div class="article-desc">Заборонено проведення рейдів, обшуків чи нападів на бази без схвалення ГА/ЗГА та вагомої RP-причини.</div>
+            <div class="punishment">Покарання: Безстрокова депортація / Варн фракції</div>
+        </div>
+        <div class="article">
+            <div class="article-title">5.2. Правила перестрілок під час рейдів</div>
+            <div class="article-desc">Заборонено використання зброї цивільними, які не відносяться до конфлікту.</div>
+            <div class="punishment">Покарання: Деморган 90 хв</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🎭 6. Non-RP Поведінка та RP-Процес</h2>
+        <div class="article">
+            <div class="article-title">6.1. Термінологія порушень</div>
+            <div class="article-desc">
+                <ul>
+                    <li><b>LeaveRP / OffRP:</b> Вихід із гри під час погоні, допиту чи арешту.</li>
+                    <li><b>MG (MetaGaming):</b> Використання OOC-інформації в IC.</li>
+                    <li><b>PG (PowerGaming):</b> Уявлення себе супергероєм (1 проти 3).</li>
+                    <li><b>DM (DeathMatch):</b> Вбивство чи нанесення шкоди без причини.</li>
+                    <li><b>DB (DriveBy):</b> Наїзд чи стрільба з водійського місця.</li>
+                    <li><b>SK / TK:</b> Вбивство на спавні / вбивство своїх колег.</li>
+                    <li><b>Cuff Rush:</b> Надягання кайданків під час лобової перестрілки.</li>
+                    <li><b>NVL:</b> Нехтування цінністю власного життя під прицілом.</li>
+                </ul>
+            </div>
+            <div class="punishment">Покарання: Деморган 60-180 хв / Депорт від 1 до 5 діб</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🟩 7. Зелена Зона (Green Zone)</h2>
+        <div class="article">
+            <div class="article-title">7.1. Правила та території ЗЗ</div>
+            <div class="article-desc">Території Зеленої Зони: Лікарні, НПУ, СБУ, ДСНС, Суд, Мерія, Спавни, СТО, Заправки, Магазини, Автосалони.</div>
+            <div class="article-desc"><b>Заборонено:</b> Стрільба, таран, затримання (якщо не було втечі у ЗЗ), грабунок, носіння зброї у відкритому вигляді.</div>
+            <div class="punishment">Покарання: Депорт від 1 до 7 діб</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🚫 8. Поширення ворожої пропаганди</h2>
+        <div class="article">
+            <div class="article-title">8.1. Ворожа символіка та висловлювання</div>
+            <div class="article-desc">Заборонено будь-яку підтримку збройної агресії проти України, символи Z, V, прапори РФ, нацистські знаки чи гімни ворожих держав.</div>
+            <div class="punishment">Покарання: Безстрокова депортація (Перманентний бан)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🔫 9. Обіг зброї та Ліцензії</h2>
+        <div class="article">
+            <div class="article-title">Стаття 1. Носіння зброї у відкритому вигляді</div>
+            <div class="article-desc">Діставання зброї в людних місцях без наявності прямої загрози життю.</div>
+            <div class="punishment">Покарання: Штраф 9 000 грн + Анулювання ліцензії</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 2. Неправомірне використання зброї</div>
+            <div class="article-desc">Стрільба у повітря, по колесах чи стінах без вагомої RP-причини.</div>
+            <div class="punishment">Покарання: Штраф 8 000 грн або депорт</div>
+        </div>
+        <div class="article">
+            <div class="article-title">Стаття 3. Незаконне зберігання та продаж</div>
+            <div class="article-desc">Торгівля, носіння чи купівля вогнепальної зброї без офіційної ліцензії МВС.</div>
+            <div class="punishment">Покарання: Депорт на 3 доби + Конфіскація</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🔒 10. Безпека та Доксинг</h2>
+        <div class="article">
+            <div class="article-title">10.1. Поширення персональних даних (Doxing)</div>
+            <div class="article-desc">Суворо заборонено поширення фотографій, ПІБ, конфіденційної інформації, адреси чи номерів телефонів гравців.</div>
+            <div class="punishment">Покарання: Безстрокова депортація (Перманентний бан)</div>
+        </div>
+        <div class="article">
+            <div class="article-title">10.2. Шахрайство та обман гравців</div>
+            <div class="article-desc">Обман на ігрову валюту, майно або транспорт під час обміну чи продажів.</div>
+            <div class="punishment">Покарання: Депортація 30 днів / Обнулення акаунту</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🚧 11. Блокпости та Перевірки</h2>
+        <div class="article">
+            <div class="article-title">11.1. Правила встановлення КПП</div>
+            <div class="article-desc">Блокпости дозволено виставляти тільки за участю не менше 4-х співробітників НПУ/СБУ.</div>
+            <div class="punishment">Покарання: Попередження / Штраф 10 000 грн</div>
+        </div>
+        <div class="article">
+            <div class="article-title">11.2. Використання загороджень та шипів</div>
+            <div class="article-desc">Розкладання шипів допускається тільки при прориві блокпоста або заздалегідь оголошеному розшуку.</div>
+            <div class="punishment">Покарання: Штраф 7 000 грн / Деморган 60 хв</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">💸 12. Корупція та BadCop</h2>
+        <div class="article">
+            <div class="article-title">12.1. Взяття та вимагання хабарів</div>
+            <div class="article-desc">Вимагання чи прийняття грошових коштів посадовими особами дозволено тільки за наявності підтвердженої BadCop біографії на форумі/в ТГ.</div>
+            <div class="punishment">Покарання: Штраф 16 000 грн + Звільнення з ЧС</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🗡️ 13. ОЗУ та Кримінальні Ситуації</h2>
+        <div class="article">
+            <div class="article-title">13.1. Викрадення людей</div>
+            <div class="article-desc">Викрадення дозволені від 3-х озброєних нападників. Максимальний викуп за цивільного — 10 000 грн, за держслужбовця — 20 000 грн.</div>
+            <div class="punishment">Покарання: Депорт від 3 до 10 діб</div>
+        </div>
+        <div class="article">
+            <div class="article-title">13.2. Пограбування</div>
+            <div class="article-desc">Заборонено грабувати гравців у Зелених Зонах та людних місцях. Грабувати дозволено тільки у закинутих зонах чи на трасі.</div>
+            <div class="punishment">Покарання: Деморган 120 хв / Депорт на 3 доби</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🚖 14. Таксі та Служби Доставки</h2>
+        <div class="article">
+            <div class="article-title">14.1. Обслуговування клієнтів</div>
+            <div class="article-desc">Водії таксі зобов'язані мати відповідну ліцензію, дотримуватись фіксованих тарифів та рухатися згідно з ПДР.</div>
+            <div class="punishment">Покарання: Штраф 8 000 грн / Позбавлення ліцензії</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">📜 15. Завершальні положення та Конституція</h2>
+        <div class="article">
+            <div class="article-title">15.1. Нехтування Конституцією та Законами</div>
+            <div class="article-desc">Будь-яке пряме порушення нормативно-правових актів чи Конституції сервера карається залежно від тяжкості проступку.</div>
+            <div class="punishment">Покарання: Депортація від 2 до 14 діб або Перманентний бан</div>
         </div>
     </div>
 
@@ -210,4 +443,4 @@
 </div>
 
 </body>
-</html>  
+</html>
