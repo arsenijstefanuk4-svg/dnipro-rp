@@ -35,7 +35,6 @@
             position: relative;
         }
 
-        /* Системний код зверху ліворуч */
         .top-left-code {
             position: absolute;
             top: 12px;
@@ -52,7 +51,6 @@
             z-index: 100;
         }
 
-        /* Бокове меню */
         .sidebar {
             width: 80px;
             background: #18120e;
@@ -86,7 +84,6 @@
             box-shadow: 0 0 12px rgba(224, 108, 56, 0.4);
         }
 
-        /* Основний контейнер */
         .main-container {
             flex: 1;
             padding: 50px 40px 30px 40px;
@@ -112,7 +109,6 @@
             border-radius: 2px;
         }
 
-        /* Пошук */
         .search-box {
             max-width: 500px;
             margin: 0 auto 25px;
@@ -138,14 +134,12 @@
             color: var(--text-sub);
         }
 
-        /* Сітка шкафчиків */
         .rules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 20px;
         }
 
-        /* Шкафчик (аккордеон) */
         .rule-locker {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -197,7 +191,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* Внутрішність шкафчика */
         .rule-locker-content {
             max-height: 0;
             overflow: hidden;
@@ -207,7 +200,7 @@
         }
 
         .rule-locker.active .rule-locker-content {
-            max-height: 2000px; /* Велике значення для розгортання */
+            max-height: 3500px;
             padding: 18px 20px;
             border-top: 1px solid var(--border-color);
             transition: max-height 0.5s ease-in-out;
@@ -243,15 +236,20 @@
             line-height: 1.5;
         }
 
+        .sub-desc ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+
         .salary-badge {
             display: inline-block;
             background: rgba(245, 158, 11, 0.15);
             color: var(--gold-color);
             border: 1px solid var(--gold-color);
-            padding: 4px 10px;
+            padding: 6px 12px;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-top: 6px;
         }
 
@@ -267,14 +265,13 @@
             margin-top: 6px;
         }
 
-        /* Розділ "Керівництво" */
         .roles-layout {
             display: flex;
             gap: 30px;
         }
 
         .roles-menu {
-            width: 220px;
+            width: 240px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -369,9 +366,11 @@
     <div class="top-left-code">CODE: 380a7rea</div>
 
     <div class="sidebar">
-        <button class="side-btn active" onclick="switchMainTab('rules-tab', this)" title="Правила"><i class="fa-solid fa-gavel"></i></button>
+        <button class="side-btn active" onclick="switchMainTab('rules-tab', this)" title="Правила та Закони"><i class="fa-solid fa-gavel"></i></button>
+        <button class="side-btn" onclick="switchMainTab('mayor-tab', this)" title="Мерія та Посади"><i class="fa-solid fa-landmark"></i></button>
+        <button class="side-btn" onclick="switchMainTab('police-tab', this)" title="Поліція (НПУ)"><i class="fa-solid fa-shield-cat"></i></button>
         <button class="side-btn" onclick="switchMainTab('court-tab', this)" title="Судова Система"><i class="fa-solid fa-scale-balanced"></i></button>
-        <button class="side-btn" onclick="switchMainTab('sbs-dbr-tab', this)" title="СБС та ДБР"><i class="fa-solid fa-shield-halved"></i></button>
+        <button class="side-btn" onclick="switchMainTab('sbs-dbr-tab', this)" title="СБС та ДБР (Ранги)"><i class="fa-solid fa-shield-halved"></i></button>
         <button class="side-btn" onclick="switchMainTab('roles-tab', this)" title="Керівництво"><i class="fa-solid fa-users"></i></button>
     </div>
 
@@ -382,7 +381,7 @@
 
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="ruleSearch" onkeyup="searchRules()" placeholder="Пошук по шкафчиках...">
+                <input type="text" id="ruleSearch" onkeyup="searchRules()" placeholder="Пошук по правилах...">
             </div>
 
             <div class="rules-grid" id="rulesGrid">
@@ -391,20 +390,25 @@
                     <div class="rule-locker-header">
                         <div class="rule-locker-title-group">
                             <div class="rule-num">1</div>
-                            <div class="rule-locker-title">Повага, Булінг та Спілкування</div>
+                            <div class="rule-locker-title">Загальні правила сервера та Етика</div>
                         </div>
                         <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">1.1. Заборона булінгу та приниження</div>
-                            <div class="sub-desc">Категорично заборонено цькування, токсична поведінка, приниження гідності гравців у будь-яких чатах.</div>
-                            <div class="punishment-badge">Мут 60-120 хв / Депортація 3-7 діб</div>
+                            <div class="sub-title">1.1. Булінг, токсичність та образи гравців</div>
+                            <div class="sub-desc">Заборонено будь-яке приниження честі та гідності, цькування за національною, мовною, релігійною чи гендерною ознакою у голосовому чи текстовому чатах.</div>
+                            <div class="punishment-badge">Мут 120 хв / Бан 3-7 діб</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">1.2. Образа Адміністрації</div>
-                            <div class="sub-desc">Неповага, провокація або перешкоджання роботі адміністратора під час вирішення тикету.</div>
-                            <div class="punishment-badge">Мут 180 хв / Депортація до 14 діб</div>
+                            <div class="sub-title">1.2. Неповага до адміністрації та провокації</div>
+                            <div class="sub-desc">Свідоме перешкоджання роботі адміністраторів, сарказм, образи команди проєкту в Discord чи в грі.</div>
+                            <div class="punishment-badge">Мут 180 хв / Бан до 14 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">1.3. MG (MetaGaming) та обмін OOC/IC інформацією</div>
+                            <div class="sub-desc">Використання інформації з реального світу (Discord, стріми) у грі, а також перенесення ігрової інфи в реальний чат.</div>
+                            <div class="punishment-badge">Деморган 60 хв</div>
                         </div>
                     </div>
                 </div>
@@ -413,25 +417,35 @@
                     <div class="rule-locker-header">
                         <div class="rule-locker-title-group">
                             <div class="rule-num">2</div>
-                            <div class="rule-locker-title">ПДР (Правила Дорожнього Руху)</div>
+                            <div class="rule-locker-title">Розширені ПДР (Правила Дорожнього Руху)</div>
                         </div>
                         <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">2.1. Зустрічна смуга та Перевищення швидкості</div>
-                            <div class="sub-desc">Умисний рух зустрічною смугою без спецсигналів або небезпечне водіння у місті.</div>
-                            <div class="punishment-badge">Штраф 4 000 - 6 000 грн</div>
+                            <div class="sub-title">2.1. Швидкісний режим у місті та за його межами</div>
+                            <div class="sub-desc">У межах населеного пункту (м. Дніпро) ліміт становить 60 км/год. На магістралях — до 110 км/год. За перевищення понад 30 км/год — штраф.</div>
+                            <div class="punishment-badge">Штраф 2 500 - 5 000 грн</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">2.2. NonRP Drive (NRD)</div>
-                            <div class="sub-desc">Їзда по полях, коліях, горах на непідхідних автомобілях (спорткари, седани).</div>
-                            <div class="punishment-badge">Деморган 60 хв / Штраф 10 000 грн</div>
+                            <div class="sub-title">2.2. Виїзд на зустрічну смугу та рух узбіччям</div>
+                            <div class="sub-desc">Категорично заборонено рухатися зустрічною смугою або обганяти колону по узбіччю (окрім спецтранспорту з проблисковими маячками).</div>
+                            <div class="punishment-badge">Штраф 5 000 грн + Вилучення прав</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">2.3. Втеча з місця ДТП</div>
-                            <div class="sub-desc">Залишення місця аварії без оформлення патрулем НПУ.</div>
-                            <div class="punishment-badge">Штраф 8 000 грн + Позбавлення прав</div>
+                            <div class="sub-title">2.3. Небезпечне водіння та Дріфт у місті (Stunt / NonRP Drive)</div>
+                            <div class="sub-desc">Влаштування стріт-рейсів, дріфту на перехрестях у центрі міста біля мерії чи лікарень.</div>
+                            <div class="punishment-badge">Штраф 8 000 грн / Деморган 40 хв</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">2.4. Паркування у невстановлених місцях</div>
+                            <div class="sub-desc">Залишення транспортних засобів на проїжджій частині, пішохідних переходах, газонах чи біля входів у держструктури.</div>
+                            <div class="punishment-badge">Евакуація авто + Штраф 3 500 грн</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">2.5. Втеча з місця ДТП</div>
+                            <div class="sub-desc">Залишення водієм місця дорожньо-транспортної пригоди, учасником якої він був, до приїзду патруля поліції.</div>
+                            <div class="punishment-badge">Штраф 10 000 грн + Арешт на 2 години</div>
                         </div>
                     </div>
                 </div>
@@ -446,14 +460,14 @@
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">3.1. Використання читів</div>
-                            <div class="sub-desc">Будь-які програми (Fly, SpeedHack, Aimbot, ESP, TP) даючі нечесну перевагу.</div>
-                            <div class="punishment-badge">Перманентний бан (Безстроково)</div>
+                            <div class="sub-title">3.1. Використання сторонніх програм (Чити)</div>
+                            <div class="sub-desc">Будь-які макроси, чити, аїмботи, вх, софт для телепортації чи прискорення автомобіля.</div>
+                            <div class="punishment-badge">Перманентний Бан (Без права апеляції)</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">3.2. Багоюз та дюп</div>
-                            <div class="sub-desc">Використання помилок карти/скриптів для накопичення грошей чи проходу крізь стіни.</div>
-                            <div class="punishment-badge">Бан від 14 діб до Перманентного + Обнулення</div>
+                            <div class="sub-title">3.2. Багоюз та дюп грошей / майна</div>
+                            <div class="sub-desc">Свідоме використання помилок мода/скриптів для отримання нечесної переваги чи валюти.</div>
+                            <div class="punishment-badge">Бан від 30 днів до Перманенту + Повне обнулення</div>
                         </div>
                     </div>
                 </div>
@@ -462,25 +476,25 @@
                     <div class="rule-locker-header">
                         <div class="rule-locker-title-group">
                             <div class="rule-num">4</div>
-                            <div class="rule-locker-title">Non-RP Порушення (DM, PG, OffRP)</div>
+                            <div class="rule-locker-title">Crime RP Порушення (DM, DB, PG, RK)</div>
                         </div>
                         <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">4.1. DM / DB</div>
-                            <div class="sub-desc">Вбивство чи нанесення шкоди без вагомої RP-причини або таран авто.</div>
-                            <div class="punishment-badge">Деморган 120 хв / Депорт до 3 діб</div>
+                            <div class="sub-title">4.1. DM (Deathmatch) та DB (DriveBy)</div>
+                            <div class="sub-desc">Вбивство або завдання шкоди без вагомої RP-причини / наїзд на пішоходів автомобілем навмисно.</div>
+                            <div class="punishment-badge">Деморган 120 хв / Бан 3 дні</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">4.2. OffRP / LeaveRP</div>
-                            <div class="sub-desc">Вихід з гри під час затримання, перестрілки чи суду.</div>
-                            <div class="punishment-badge">Депорт від 3 до 7 діб</div>
-                        </div>
-                        <div class="sub-article">
-                            <div class="sub-title">4.3. PG (PowerGaming) / NVL</div>
-                            <div class="sub-desc">Удавання із себе "супергероя" (1 проти 3 зі зброєю) або нехтування життям під прицілом.</div>
+                            <div class="sub-title">4.2. PG (PowerGaming)</div>
+                            <div class="sub-desc">Перебільшення можливостей свого персонажа (напад з кулаками на людину з вогнепальною зброєю або 1 в 4).</div>
                             <div class="punishment-badge">Деморган 90 хв</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">4.3. RK (RevengeKill) та OffRP</div>
+                            <div class="sub-desc">Повернення на місце своєї смерті з метою помсти протягом 15 хвилин / вихід з гри під час арешту чи рп-процесу.</div>
+                            <div class="punishment-badge">Деморган 100 хв / Бан 3-5 днів</div>
                         </div>
                     </div>
                 </div>
@@ -495,121 +509,113 @@
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">5.1. Поведінка в ЗЗ</div>
-                            <div class="sub-desc">У лікарнях, поліції, ДСНС, мерії, на спавнах та заправках суворо заборонено стрільбу, викрадення, бійки.</div>
-                            <div class="punishment-badge">Депорт від 3 до 7 діб</div>
+                            <div class="sub-title">5.1. Перелік та правила у ЗЗ</div>
+                            <div class="sub-desc">Мерія, лікарні, відділок поліції, суд, спавни новачків та автосалони є зеленими зонами. У них категорично заборонено наносити будь-яку шкоду гравцям та діставати зброю.</div>
+                            <div class="punishment-badge">Бан від 3 до 7 днів</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">5.2. Ухід в ЗЗ від погоні</div>
-                            <div class="sub-desc">Спроба заховатися у зеленій зоні під час переслідування поліцією або бандитами.</div>
-                            <div class="punishment-badge">Деморган 180 хв / Депорт 3 доби</div>
+                            <div class="sub-title">5.2. Ухід у Зелену Зону від переслідування</div>
+                            <div class="sub-desc">Заборонено ховатися в ЗЗ під час погоні поліції або активної перестрілки.</div>
+                            <div class="punishment-badge">Деморган 180 хв</div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+        </div>
+
+        <div id="mayor-tab" class="tab-content">
+            <h1 class="header-title">🏛️ МЕРІЯ ТА СТРУКТУРА ПОСАД</h1>
+            <div class="rules-grid">
                 <div class="rule-locker" onclick="toggleLocker(this)">
                     <div class="rule-locker-header">
                         <div class="rule-locker-title-group">
-                            <div class="rule-num">6</div>
-                            <div class="rule-locker-title">Зброя та Ліцензії</div>
+                            <div class="rule-num">🏛️</div>
+                            <div class="rule-locker-title">Посади та Ієрархія в Мерії</div>
                         </div>
                         <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">6.1. Відкрите носіння</div>
-                            <div class="sub-desc">Носіння вогнепальної зброї в руках у громадських місцях без загрози.</div>
-                            <div class="punishment-badge">Конфіскація + Штраф 9 000 грн</div>
+                            <div class="sub-title">1. Охорона мерії</div>
+                            <div class="sub-desc">Забезпечення внутрішньої безпеки міської ради, контроль пропускного режиму на вході, захист мера та заступників під час виїздів.</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">6.2. Нелегальна зброя</div>
-                            <div class="sub-desc">Купівля або зберігання зброї без офіційної ліцензії МВС.</div>
-                            <div class="punishment-badge">Арешт + Штраф 15 000 грн</div>
+                            <div class="sub-title">2. Секретар / Прес-секретар</div>
+                            <div class="sub-desc">Опрацювання звернень громадян, запис на прийом до міського голови, організація офіційних заходів та брифінгів.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">3. Міністерства та Департаменти</div>
+                            <div class="sub-desc">Міністр фінансів (контроль бюджету), Міністр внутрішніх справ (взаємодія з НПУ), Міністр охорони здоров'я.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">4. Міський Голова (Мер)</div>
+                            <div class="sub-desc">Керівник міста, підписує укази, розподіляє міський бюджет, контролює роботу всіх комунальних та державних структур на карті.</div>
+                            <div class="salary-badge">💰 Зарплата за зміну: 45 000 грн</div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div id="police-tab" class="tab-content">
+            <h1 class="header-title">👮 ПОЛІЦІЯ (НПУ) ТА РЕГЛАМЕНТ</h1>
+            <div class="rules-grid">
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">👮</div>
+                            <div class="rule-locker-title">Обов'язки та Повноваження НПУ</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Затримання та Стадія Застосування Сили</div>
+                            <div class="sub-desc">Поліцейський зобов'язаний зачитати міранду при затриманні, повідомити причину та доставити підозрюваного до ізолятора. Застосування зброї дозволено лише у відповідь на загрозу життю.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Офіційні Зарплати в НПУ</div>
+                            <div class="sub-desc">Рядовий патрульний: 18 000 грн | Капітан: 26 000 грн | Генерал НПУ: 38 000 грн.</div>
+                            <div class="salary-badge">💰 Збалансований фонд оплати праці НПУ</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div id="court-tab" class="tab-content">
-            <h1 class="header-title">🏛️ СУДОВА СИСТЕМА ТА СУДДІ</h1>
+            <h1 class="header-title">⚖️ СУДОВА СИСТЕМА ТА СУДДІ</h1>
 
             <div class="rules-grid">
-
                 <div class="rule-locker" onclick="toggleLocker(this)">
                     <div class="rule-locker-header">
                         <div class="rule-locker-title-group">
                             <div class="rule-num">⚖️</div>
-                            <div class="rule-locker-title">Повноваження Суддів та Статус</div>
+                            <div class="rule-locker-title">Повноваження та Статус Суддів</div>
                         </div>
                         <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">Правовий статус Судді</div>
-                            <div class="sub-desc">Суддя є носієм судової влади. Рішення судді є остаточними і обов'язковими для виконання всіма фракціями (НПУ, СБУ, Мерія, ДСНС). Суддя володіє недоторканністю під час виконання обов'язків.</div>
+                            <div class="sub-title">Верховний та Окружний Суди</div>
+                            <div class="sub-desc">Судді є незалежними арбітрами у вирішенні спорів між держструктурами та громадянами. Видають ордери на обшуки вищих чиновників, розглядають скарги на ДБР та НПУ.</div>
                         </div>
                         <div class="sub-article">
-                            <div class="sub-title">Повноваження Суду</div>
-                            <div class="sub-desc">
-                                <ul>
-                                    <li>Видання ордерів на обшук, затримання та арешт вищих посадовців.</li>
-                                    <li>Розгляд кримінальних справ, переданих від ДБР та СБС.</li>
-                                    <li>Скасування неправомірних штрафів та нарахування компенсацій громадянам.</li>
-                                    <li>Проведення процедури імпічменту Мера чи звільнення генералів.</li>
-                                </ul>
-                            </div>
+                            <div class="sub-title">СПРАВЕДЛИВА ВИСОКА ЗАРПЛАТА СУДДІВ ТА СПІВРОБІТНИКІВ</div>
+                            <div class="sub-desc">Враховуючи високу відповідальність, складність роботи та захист законності на сервері, судді та керівний склад отримують підвищені престижні виплати:</div>
+                            <br>
+                            <div class="salary-badge">⚖️ Голова Верховного Суду: 65 000 грн / зміна</div><br>
+                            <div class="salary-badge">👨‍⚖️ Окружний Суддя: 52 000 грн / зміна</div><br>
+                            <div class="salary-badge">🏛️ Державний Прокурор: 48 000 грн / зміна</div>
                         </div>
                     </div>
                 </div>
-
-                <div class="rule-locker" onclick="toggleLocker(this)">
-                    <div class="rule-locker-header">
-                        <div class="rule-locker-title-group">
-                            <div class="rule-num">💰</div>
-                            <div class="rule-locker-title">Зарплати та Оплата Праці Посадовців</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="rule-locker-content">
-                        <div class="sub-article">
-                            <div class="sub-title">Офіційні ставки посадовців (за пейдей / зміну)</div>
-                            <div class="sub-desc">Для збереження балансу економіки сервера встановлено фіксовані суми зарплат:</div>
-                            <div class="salary-badge">⚖️ Верховний Суддя: 40 000 грн</div><br>
-                            <div class="salary-badge">👨‍⚖️ Окружний Суддя: 35 000 грн</div><br>
-                            <div class="salary-badge">🏛️ Мер міста / Прокурор: 35 000 - 40 000 грн</div><br>
-                            <div class="salary-badge">🛡️ Керівництво ДБР / СБС: 30 000 - 35 000 грн</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rule-locker" onclick="toggleLocker(this)">
-                    <div class="rule-locker-header">
-                        <div class="rule-locker-title-group">
-                            <div class="rule-num">📜</div>
-                            <div class="rule-locker-title">Регламент Судового Засідання</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                    </div>
-                    <div class="rule-locker-content">
-                        <div class="sub-article">
-                            <div class="sub-title">Порядок проведення засідання</div>
-                            <div class="sub-desc">1. Відкриття засідання Суддею.<br>2. Виступ сторони обвинувачення (ДБР / Прокурор).<br>3. Виступ адвоката та підсудного.<br>4. Допити свідків та вивчення фото/відео доказів.<br>5. Винесення вироку.</div>
-                        </div>
-                        <div class="sub-article">
-                            <div class="sub-title">Порушення порядку у залі суду</div>
-                            <div class="sub-desc">Непокора судді, перебивання, викрикування або зброя у залі суду.</div>
-                            <div class="punishment-badge">Штраф 15 000 грн / Арешт за неповагу до суду</div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
         <div id="sbs-dbr-tab" class="tab-content">
-            <h1 class="header-title">🛡️ РЕГЛАМЕНТ СБС ТА ДБР</h1>
+            <h1 class="header-title">🛡️ СБС ТА ДБР — РАНГИ ТА РЕГЛАМЕНТ</h1>
 
             <div class="rules-grid">
 
@@ -617,25 +623,24 @@
                     <div class="rule-locker-header">
                         <div class="rule-locker-title-group">
                             <div class="rule-num">🛡️</div>
-                            <div class="rule-locker-title">СБС — Служба Безпеки Сервера</div>
+                            <div class="rule-locker-title">СБС (Служба Безпеки Сервера) — Ранги</div>
                         </div>
                         <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">Основний напрямок роботи СБС</div>
-                            <div class="sub-desc">СБС є органом контррозвідки та захисту внутрішнього порядку сервера. Займається викриттям читерів, сливів адмін-інформації, доксингу та забезпеченням безпеки керівництва.</div>
-                        </div>
-                        <div class="sub-article">
-                            <div class="sub-title">Повноваження СБС</div>
+                            <div class="sub-title">Система Рангів СБС</div>
                             <div class="sub-desc">
                                 <ul>
-                                    <li>Виклик будь-якого гравця на перевірку стороннього ПЗ (чити/софт).</li>
-                                    <li>Безперешкодний доступ на будь-які закриті військові чи державні об'єкти.</li>
-                                    <li>Затримання осіб, підозрюваних у шпигунстві чи зливі даних.</li>
-                                    <li>СБС підпорядковується виключно Засновнику (Stas_po12) та Власнику (Pulsarchik_RP1131).</li>
+                                    <li><b>Ранг 1:</b> Стажер СБС (навчання, перевірка базових знань)</li>
+                                    <li><b>Ранг 2:</b> Оперативник СБС (патрулювання об'єктів, перевірки)</li>
+                                    <li><b>Ранг 3:</b> Старший Оперативник СБС (проведення контррозвідки)</li>
+                                    <li><b>Ранг 4:</b> Інспектор СБС (розслідування витоків інформації)</li>
+                                    <li><b>Ранг 5:</b> Заступник Начальника СБС</li>
+                                    <li><b>Ранг 6:</b> Начальник СБС (керівництво відділом)</li>
                                 </ul>
                             </div>
+                            <div class="salary-badge">💰 Зарплата керівництва СБС: 50 000 грн</div>
                         </div>
                     </div>
                 </div>
@@ -644,25 +649,24 @@
                     <div class="rule-locker-header">
                         <div class="rule-locker-title-group">
                             <div class="rule-num">🔍</div>
-                            <div class="rule-locker-title">ДБР — Державне Бюро Розслідувань</div>
+                            <div class="rule-locker-title">ДБР (Державне Бюро Розслідувань) — Ранги</div>
                         </div>
                         <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
                     <div class="rule-locker-content">
                         <div class="sub-article">
-                            <div class="sub-title">Сфера діяльності ДБР</div>
-                            <div class="sub-desc">ДБР розслідує злочини, вчинені співробітниками поліції, СБУ, ДСНС, Мерії та Суддями. Борється з корупцією, хабарництвом, "блатом" та превышением повноважень.</div>
-                        </div>
-                        <div class="sub-article">
-                            <div class="sub-title">Повноваження оперативників ДБР</div>
+                            <div class="sub-title">Система Рангів ДБР</div>
                             <div class="sub-desc">
                                 <ul>
-                                    <li>Відкриття кримінальних проваджень проти будь-якого держслужбовця.</li>
-                                    <li>Проведення контрольних закупівель та перевірок на хабарі.</li>
-                                    <li>Затримання та допит поліцейських і генералів при наявності доказів.</li>
-                                    <li>Вилучення боді-камер та борт-журналів для проведення слідства.</li>
+                                    <li><b>Ранг 1:</b> Слідчий-стажер ДБР</li>
+                                    <li><b>Ранг 2:</b> Слідчий ДБР (розслідування справ проти держслужбовців)</li>
+                                    <li><b>Ранг 3:</b> Старший Слідчий ДБР</li>
+                                    <li><b>Ранг 4:</b> Спеціальний Агент ДБР (боротьба з корупцією у вищих ешелонах)</li>
+                                    <li><b>Ранг 5:</b> Заступник Директора ДБР</li>
+                                    <li><b>Ранг 6:</b> Директор ДБР</li>
                                 </ul>
                             </div>
+                            <div class="salary-badge">💰 Зарплата керівництва ДБР: 50 000 грн</div>
                         </div>
                     </div>
                 </div>
@@ -681,7 +685,6 @@
                 </div>
 
                 <div class="roles-list">
-                    
                     <div class="user-card role-group admin">
                         <div class="avatar-box">
                             <img src="https://www.roblox.com/headshot-thumbnail/image?username=Stas_po12&width=150&height=150&format=png" alt="Stas_po12">
@@ -703,19 +706,17 @@
                             <div class="meta">Telegram: <span>Не вказано</span></div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
         <footer>
-            Dnipro RP | System ID: <span style="color: var(--accent-orange); font-family: monospace;">380a7rea</span> | Emergency Hamburg [UA]
+            Dnipro RP | System ID: <span style="color: var(--accent-orange); font-family: monospace;">380a7rea</span> | Emergency Hamburg [UA] Style
         </footer>
 
     </div>
 
     <script>
-        // Переключення між головними вкладками (ліва панель)
         function switchMainTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
@@ -724,12 +725,10 @@
             btn.classList.add('active');
         }
 
-        // Розгортання та згортання шкафчиків правил (аккордеон)
         function toggleLocker(locker) {
             locker.classList.toggle('active');
         }
 
-        // Пошук по шкафчиках
         function searchRules() {
             let input = document.getElementById('ruleSearch').value.toLowerCase();
             let lockers = document.querySelectorAll('#rulesGrid .rule-locker');
@@ -740,20 +739,6 @@
                     locker.style.display = 'block';
                 } else {
                     locker.style.display = 'none';
-                }
-            });
-        }
-
-        // Фільтрація списку керівництва
-        function filterRoles(category) {
-            document.querySelectorAll('.role-tab').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            document.querySelectorAll('.user-card').forEach(card => {
-                if (card.classList.contains(category)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
                 }
             });
         }
