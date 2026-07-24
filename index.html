@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dnipro RP | Офіційний Регламент та Ролі</title>
+    <title>Dnipro RP | Офіційний Регламент та Законодавство</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --bg-color: #120e0c;
-            --card-bg: #211a15;
+            --card-bg: #1c1511;
+            --card-open-bg: #271e18;
             --accent-orange: #e06c38;
             --btn-bg: #322822;
             --text-main: #f3f4f6;
             --text-sub: #9ca3af;
             --fine-color: #f87171;
             --border-color: #3a2e27;
+            --gold-color: #f59e0b;
         }
 
         * {
@@ -30,9 +32,27 @@
             display: flex;
             height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Бокова панель (Sidebar) */
+        /* Системний код зверху ліворуч */
+        .top-left-code {
+            position: absolute;
+            top: 12px;
+            left: 95px;
+            background: rgba(224, 108, 56, 0.15);
+            border: 1px solid var(--accent-orange);
+            color: var(--accent-orange);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            z-index: 100;
+        }
+
+        /* Бокове меню */
         .sidebar {
             width: 80px;
             background: #18120e;
@@ -42,6 +62,7 @@
             align-items: center;
             padding: 20px 0;
             gap: 15px;
+            z-index: 10;
         }
 
         .side-btn {
@@ -68,13 +89,13 @@
         /* Основний контейнер */
         .main-container {
             flex: 1;
-            padding: 30px 40px;
+            padding: 50px 40px 30px 40px;
             overflow-y: auto;
         }
 
         .header-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.4rem;
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -93,7 +114,7 @@
 
         /* Пошук */
         .search-box {
-            max-width: 450px;
+            max-width: 500px;
             margin: 0 auto 25px;
             position: relative;
         }
@@ -117,79 +138,136 @@
             color: var(--text-sub);
         }
 
-        /* Сітка "Картки-Шкафчики" правил */
+        /* Сітка шкафчиків */
         .rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 20px;
         }
 
-        .rule-card {
-            background: var(--btn-bg);
+        /* Шкафчик (аккордеон) */
+        .rule-locker {
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: 0.2s;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .rule-card:hover {
+        .rule-locker:hover {
             border-color: var(--accent-orange);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
         }
 
-        .rule-header {
+        .rule-locker-header {
+            padding: 18px 20px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            background: var(--btn-bg);
         }
 
-        .rule-number {
-            font-size: 1.6rem;
-            font-weight: 800;
+        .rule-locker-title-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .rule-num {
+            width: 36px;
+            height: 36px;
+            background: rgba(224, 108, 56, 0.15);
             color: var(--accent-orange);
-            background: rgba(224, 108, 56, 0.1);
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
         }
 
-        .rule-title {
-            font-size: 1.1rem;
+        .rule-locker-title {
+            font-size: 1.05rem;
             font-weight: 700;
         }
 
-        .rule-body {
-            font-size: 0.93rem;
+        .toggle-icon {
+            color: var(--text-sub);
+            transition: transform 0.3s ease;
+        }
+
+        /* Внутрішність шкафчика */
+        .rule-locker-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            background: var(--card-open-bg);
+            padding: 0 20px;
+        }
+
+        .rule-locker.active .rule-locker-content {
+            max-height: 2000px; /* Велике значення для розгортання */
+            padding: 18px 20px;
+            border-top: 1px solid var(--border-color);
+            transition: max-height 0.5s ease-in-out;
+        }
+
+        .rule-locker.active .toggle-icon {
+            transform: rotate(180deg);
+            color: var(--accent-orange);
+        }
+
+        .sub-article {
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .sub-article:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .sub-title {
+            font-weight: 700;
+            color: var(--accent-orange);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .sub-desc {
+            font-size: 0.9rem;
             color: #d1d5db;
             line-height: 1.5;
         }
 
-        .rule-body ul {
-            margin-left: 18px;
-            margin-top: 5px;
-        }
-
-        .punishment {
-            font-size: 0.85rem;
-            color: var(--fine-color);
-            font-weight: 600;
-            background: rgba(248, 113, 113, 0.1);
-            padding: 6px 10px;
+        .salary-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold-color);
+            border: 1px solid var(--gold-color);
+            padding: 4px 10px;
             border-radius: 6px;
-            margin-top: 5px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 6px;
         }
 
-        /* Розділ "Ролі" */
+        .punishment-badge {
+            display: inline-block;
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--fine-color);
+            border: 1px solid var(--fine-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        /* Розділ "Керівництво" */
         .roles-layout {
             display: flex;
             gap: 30px;
@@ -237,8 +315,8 @@
         }
 
         .avatar-box {
-            width: 75px;
-            height: 75px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: #111;
             border: 2px solid var(--accent-orange);
@@ -253,7 +331,7 @@
         }
 
         .user-info .role-name {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
         }
 
@@ -284,220 +362,322 @@
             border-top: 1px solid var(--border-color);
             padding-top: 15px;
         }
-
-        .code-tag {
-            background: #18120e;
-            padding: 3px 8px;
-            border-radius: 4px;
-            color: var(--accent-orange);
-            font-family: monospace;
-        }
     </style>
 </head>
 <body>
 
+    <div class="top-left-code">CODE: 380a7rea</div>
+
     <div class="sidebar">
         <button class="side-btn active" onclick="switchMainTab('rules-tab', this)" title="Правила"><i class="fa-solid fa-gavel"></i></button>
-        <button class="side-btn" onclick="switchMainTab('roles-tab', this)" title="Керівництво та Ролі"><i class="fa-solid fa-users"></i></button>
-        <button class="side-btn" onclick="switchMainTab('struct-tab', this)" title="СБС та ДБР"><i class="fa-solid fa-shield-halved"></i></button>
-        <button class="side-btn" onclick="switchMainTab('meriya-tab', this)" title="Мерія"><i class="fa-solid fa-city"></i></button>
+        <button class="side-btn" onclick="switchMainTab('court-tab', this)" title="Судова Система"><i class="fa-solid fa-scale-balanced"></i></button>
+        <button class="side-btn" onclick="switchMainTab('sbs-dbr-tab', this)" title="СБС та ДБР"><i class="fa-solid fa-shield-halved"></i></button>
+        <button class="side-btn" onclick="switchMainTab('roles-tab', this)" title="Керівництво"><i class="fa-solid fa-users"></i></button>
     </div>
 
     <div class="main-container">
 
         <div id="rules-tab" class="tab-content active">
-            <h1 class="header-title">ПРАВИЛА СЕРВЕРА</h1>
+            <h1 class="header-title">ЗАГАЛЬНІ ПРАВИЛА ТА РЕГЛАМЕНТ</h1>
 
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="ruleSearch" onkeyup="searchRules()" placeholder="Знайти пункт правил...">
+                <input type="text" id="ruleSearch" onkeyup="searchRules()" placeholder="Пошук по шкафчиках...">
             </div>
 
             <div class="rules-grid" id="rulesGrid">
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">1</div>
-                        <div class="rule-title">Повага та Антибулінг</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">1</div>
+                            <div class="rule-locker-title">Повага, Булінг та Спілкування</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Заборонено образи, булінг, приниження гідності гравців у IC/OOC чатах, розпалювання конфліктів.</div>
-                    <div class="punishment">Покарання: Мут 60 хв / Депортація до 7 діб</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">1.1. Заборона булінгу та приниження</div>
+                            <div class="sub-desc">Категорично заборонено цькування, токсична поведінка, приниження гідності гравців у будь-яких чатах.</div>
+                            <div class="punishment-badge">Мут 60-120 хв / Депортація 3-7 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">1.2. Образа Адміністрації</div>
+                            <div class="sub-desc">Неповага, провокація або перешкоджання роботі адміністратора під час вирішення тикету.</div>
+                            <div class="punishment-badge">Мут 180 хв / Депортація до 14 діб</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">2</div>
-                        <div class="rule-title">ПДР — Правила Руху</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">2</div>
+                            <div class="rule-locker-title">ПДР (Правила Дорожнього Руху)</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">
-                        <ul>
-                            <li>Паркування у заборонених місцях</li>
-                            <li>Їзда по зустрічній смузі</li>
-                            <li>Перевищення швидкості</li>
-                            <li><b>NRD:</b> Їзда по полях/горах на спорткарах</li>
-                        </ul>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">2.1. Зустрічна смуга та Перевищення швидкості</div>
+                            <div class="sub-desc">Умисний рух зустрічною смугою без спецсигналів або небезпечне водіння у місті.</div>
+                            <div class="punishment-badge">Штраф 4 000 - 6 000 грн</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">2.2. NonRP Drive (NRD)</div>
+                            <div class="sub-desc">Їзда по полях, коліях, горах на непідхідних автомобілях (спорткари, седани).</div>
+                            <div class="punishment-badge">Деморган 60 хв / Штраф 10 000 грн</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">2.3. Втеча з місця ДТП</div>
+                            <div class="sub-desc">Залишення місця аварії без оформлення патрулем НПУ.</div>
+                            <div class="punishment-badge">Штраф 8 000 грн + Позбавлення прав</div>
+                        </div>
                     </div>
-                    <div class="punishment">Покарання: Штраф від 3 000 до 10 000 грн / Деморган</div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">3</div>
-                        <div class="rule-title">Чити та Багоюз</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">3</div>
+                            <div class="rule-locker-title">Чити, Стороннє ПЗ та Баги</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Використання стороннього ПЗ (Fly, TP, SpeedHack) або використання багів гри для переваги чи збагачення.</div>
-                    <div class="punishment">Покарання: Перманентний бан (Безстроково)</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">3.1. Використання читів</div>
+                            <div class="sub-desc">Будь-які програми (Fly, SpeedHack, Aimbot, ESP, TP) даючі нечесну перевагу.</div>
+                            <div class="punishment-badge">Перманентний бан (Безстроково)</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">3.2. Багоюз та дюп</div>
+                            <div class="sub-desc">Використання помилок карти/скриптів для накопичення грошей чи проходу крізь стіни.</div>
+                            <div class="punishment-badge">Бан від 14 діб до Перманентного + Обнулення</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">4</div>
-                        <div class="rule-title">Службові обов'язки</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">4</div>
+                            <div class="rule-locker-title">Non-RP Порушення (DM, PG, OffRP)</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Працівники МВС, ДСНС, МОЗ зобов'язані дотримуватися регламенту, не використовувати спецсигнали для розваг та спілкуватися українською мовою.</div>
-                    <div class="punishment">Покарання: Штраф 8 000 грн / Звільнення з ЧС</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">4.1. DM / DB</div>
+                            <div class="sub-desc">Вбивство чи нанесення шкоди без вагомої RP-причини або таран авто.</div>
+                            <div class="punishment-badge">Деморган 120 хв / Депорт до 3 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">4.2. OffRP / LeaveRP</div>
+                            <div class="sub-desc">Вихід з гри під час затримання, перестрілки чи суду.</div>
+                            <div class="punishment-badge">Депорт від 3 до 7 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">4.3. PG (PowerGaming) / NVL</div>
+                            <div class="sub-desc">Удавання із себе "супергероя" (1 проти 3 зі зброєю) або нехтування життям під прицілом.</div>
+                            <div class="punishment-badge">Деморган 90 хв</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">5</div>
-                        <div class="rule-title">Рейди</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">5</div>
+                            <div class="rule-locker-title">Зелені Зони (Green Zone)</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Проведення масових нападів чи рейдів без узгодження з Адміністрацією сервера заборонено.</div>
-                    <div class="punishment">Покарання: Безстрокова депортація</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">5.1. Поведінка в ЗЗ</div>
+                            <div class="sub-desc">У лікарнях, поліції, ДСНС, мерії, на спавнах та заправках суворо заборонено стрільбу, викрадення, бійки.</div>
+                            <div class="punishment-badge">Депорт від 3 до 7 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">5.2. Ухід в ЗЗ від погоні</div>
+                            <div class="sub-desc">Спроба заховатися у зеленій зоні під час переслідування поліцією або бандитами.</div>
+                            <div class="punishment-badge">Деморган 180 хв / Депорт 3 доби</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">6</div>
-                        <div class="rule-title">Non-RP поведінка</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">6</div>
+                            <div class="rule-locker-title">Зброя та Ліцензії</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">
-                        <b>OffRP, DM, DB, SK, TK, PG, NVL, Cuff Rush.</b> Заборонено виходити з гри під час арешту або ігнорувати загрозу життю.
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">6.1. Відкрите носіння</div>
+                            <div class="sub-desc">Носіння вогнепальної зброї в руках у громадських місцях без загрози.</div>
+                            <div class="punishment-badge">Конфіскація + Штраф 9 000 грн</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">6.2. Нелегальна зброя</div>
+                            <div class="sub-desc">Купівля або зберігання зброї без офіційної ліцензії МВС.</div>
+                            <div class="punishment-badge">Арешт + Штраф 15 000 грн</div>
+                        </div>
                     </div>
-                    <div class="punishment">Покарання: Деморган 60-180 хв / Депорт до 5 діб</div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">7</div>
-                        <div class="rule-title">Green Zone (ЗЗ)</div>
+            </div>
+        </div>
+
+        <div id="court-tab" class="tab-content">
+            <h1 class="header-title">🏛️ СУДОВА СИСТЕМА ТА СУДДІ</h1>
+
+            <div class="rules-grid">
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">⚖️</div>
+                            <div class="rule-locker-title">Повноваження Суддів та Статус</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">У Зеленій Зоні (Лікарня, Поліція, Спавни, Заправки) суворо заборонено стрілянину, грабежі та ухід у ЗЗ від погоні.</div>
-                    <div class="punishment">Покарання: Депорт від 3 до 7 діб</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Правовий статус Судді</div>
+                            <div class="sub-desc">Суддя є носієм судової влади. Рішення судді є остаточними і обов'язковими для виконання всіма фракціями (НПУ, СБУ, Мерія, ДСНС). Суддя володіє недоторканністю під час виконання обов'язків.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Повноваження Суду</div>
+                            <div class="sub-desc">
+                                <ul>
+                                    <li>Видання ордерів на обшук, затримання та арешт вищих посадовців.</li>
+                                    <li>Розгляд кримінальних справ, переданих від ДБР та СБС.</li>
+                                    <li>Скасування неправомірних штрафів та нарахування компенсацій громадянам.</li>
+                                    <li>Проведення процедури імпічменту Мера чи звільнення генералів.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">8</div>
-                        <div class="rule-title">Ворожа пропаганда</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">💰</div>
+                            <div class="rule-locker-title">Зарплати та Оплата Праці Посадовців</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Виправдання агресії РФ, демонстрація символіки Z, V, прапорів ворога чи нацизму.</div>
-                    <div class="punishment">Покарання: Перманентний бан</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Офіційні ставки посадовців (за пейдей / зміну)</div>
+                            <div class="sub-desc">Для збереження балансу економіки сервера встановлено фіксовані суми зарплат:</div>
+                            <div class="salary-badge">⚖️ Верховний Суддя: 40 000 грн</div><br>
+                            <div class="salary-badge">👨‍⚖️ Окружний Суддя: 35 000 грн</div><br>
+                            <div class="salary-badge">🏛️ Мер міста / Прокурор: 35 000 - 40 000 грн</div><br>
+                            <div class="salary-badge">🛡️ Керівництво ДБР / СБС: 30 000 - 35 000 грн</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">9</div>
-                        <div class="rule-title">Привласнення території</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">📜</div>
+                            <div class="rule-locker-title">Регламент Судового Засідання</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Незаконне перекриття доріг, будівель або встановлення власних блоків без узгодження.</div>
-                    <div class="punishment">Покарання: Деморган 60 хв / Штраф</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Порядок проведення засідання</div>
+                            <div class="sub-desc">1. Відкриття засідання Суддею.<br>2. Виступ сторони обвинувачення (ДБР / Прокурор).<br>3. Виступ адвоката та підсудного.<br>4. Допити свідків та вивчення фото/відео доказів.<br>5. Винесення вироку.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Порушення порядку у залі суду</div>
+                            <div class="sub-desc">Непокора судді, перебивання, викрикування або зброя у залі суду.</div>
+                            <div class="punishment-badge">Штраф 15 000 грн / Арешт за неповагу до суду</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">10</div>
-                        <div class="rule-title">Партнерські шлюби</div>
+            </div>
+        </div>
+
+        <div id="sbs-dbr-tab" class="tab-content">
+            <h1 class="header-title">🛡️ РЕГЛАМЕНТ СБС ТА ДБР</h1>
+
+            <div class="rules-grid">
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">🛡️</div>
+                            <div class="rule-locker-title">СБС — Служба Безпеки Сервера</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Оформлення сімейних союзів проводиться виключно через Мерію з дотриманням RP-процесу.</div>
-                    <div class="punishment">Регламентовано Мерією</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Основний напрямок роботи СБС</div>
+                            <div class="sub-desc">СБС є органом контррозвідки та захисту внутрішнього порядку сервера. Займається викриттям читерів, сливів адмін-інформації, доксингу та забезпеченням безпеки керівництва.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Повноваження СБС</div>
+                            <div class="sub-desc">
+                                <ul>
+                                    <li>Виклик будь-якого гравця на перевірку стороннього ПЗ (чити/софт).</li>
+                                    <li>Безперешкодний доступ на будь-які закриті військові чи державні об'єкти.</li>
+                                    <li>Затримання осіб, підозрюваних у шпигунстві чи зливі даних.</li>
+                                    <li>СБС підпорядковується виключно Засновнику (Stas_po12) та Власнику (Pulsarchik_RP1131).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">11</div>
-                        <div class="rule-title">Зброя для гравців</div>
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">🔍</div>
+                            <div class="rule-locker-title">ДБР — Державне Бюро Розслідувань</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-body">Носіння зброї у відкритому вигляді у людних місцях, стрільба без причини чи продаж без ліцензії.</div>
-                    <div class="punishment">Покарання: Штраф 9 000 грн / Конфіскація</div>
-                </div>
-
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">12</div>
-                        <div class="rule-title">Безпека та Доксинг</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Сфера діяльності ДБР</div>
+                            <div class="sub-desc">ДБР розслідує злочини, вчинені співробітниками поліції, СБУ, ДСНС, Мерії та Суддями. Борється з корупцією, хабарництвом, "блатом" та превышением повноважень.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Повноваження оперативників ДБР</div>
+                            <div class="sub-desc">
+                                <ul>
+                                    <li>Відкриття кримінальних проваджень проти будь-якого держслужбовця.</li>
+                                    <li>Проведення контрольних закупівель та перевірок на хабарі.</li>
+                                    <li>Затримання та допит поліцейських і генералів при наявності доказів.</li>
+                                    <li>Вилучення боді-камер та борт-журналів для проведення слідства.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rule-body">Поширення особистих даних гравців (ПІБ, фото, адреси, номери) суворо заборонено.</div>
-                    <div class="punishment">Покарання: Перманентний бан</div>
-                </div>
-
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">13</div>
-                        <div class="rule-title">КПП та Блокпости</div>
-                    </div>
-                    <div class="rule-body">Проїзд блокпостів без зупинки на вимогу правоохоронців розцінюється як непокора.</div>
-                    <div class="punishment">Покарання: Штраф / Втрата ТЗ</div>
-                </div>
-
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">14</div>
-                        <div class="rule-title">Правоохоронні органи</div>
-                    </div>
-                    <div class="rule-body">Видача розшуку без причини, арешт без зачитання Міранди або фальсифікація доказів.</div>
-                    <div class="punishment">Покарання: Догана / Штраф 16 000 грн</div>
-                </div>
-
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">15</div>
-                        <div class="rule-title">Майно та Нерухомість</div>
-                    </div>
-                    <div class="rule-body">Вимагання або шахрайство із майном, автомобілями чи бізнесами гравців.</div>
-                    <div class="punishment">Покарання: Бан + Обнулення майна</div>
-                </div>
-
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">16</div>
-                        <div class="rule-title">Корупція</div>
-                    </div>
-                    <div class="rule-body">Отримання або дача хабарів без схваленої біографії BadCop.</div>
-                    <div class="punishment">Покарання: Штраф 16 000 грн / Звільнення</div>
-                </div>
-
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">17</div>
-                        <div class="rule-title">Контрабанда</div>
-                    </div>
-                    <div class="rule-body">Продаж нелегальних предметів у громадських місцях або біля державних установ.</div>
-                    <div class="punishment">Покарання: Конфіскація + Арешт</div>
-                </div>
-
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-number">18</div>
-                        <div class="rule-title">Судовий регламент</div>
-                    </div>
-                    <div class="rule-body">Непокора рішенням Суду, неповага до судді під час засідання.</div>
-                    <div class="punishment">Покарання: Штраф / Депортація</div>
                 </div>
 
             </div>
         </div>
 
         <div id="roles-tab" class="tab-content">
-            <h1 class="header-title">КЕРІВНИЦТВО СЕРВЕРА</h1>
+            <h1 class="header-title">👑 ВИЩЕ КЕРІВНИЦТВО СЕРВЕРА</h1>
 
             <div class="roles-layout">
                 <div class="roles-menu">
                     <button class="role-tab active" onclick="filterRoles('admin')">Адміністрація</button>
-                    <button class="role-tab" onclick="filterRoles('sbs')">СБС</button>
-                    <button class="role-tab" onclick="filterRoles('dbr')">ДБР</button>
-                    <button class="role-tab" onclick="filterRoles('meriya')">Мерія</button>
+                    <button class="role-tab" onclick="filterRoles('sbs')">Керівництво СБС</button>
+                    <button class="role-tab" onclick="filterRoles('dbr')">Керівництво ДБР</button>
                 </div>
 
                 <div class="roles-list">
@@ -508,18 +688,18 @@
                         </div>
                         <div class="user-info">
                             <div class="role-name">👑 R7 Засновник сервера</div>
-                            <div class="meta">Username: <span>Stas_po12</span></div>
+                            <div class="meta">Roblox Username: <span>Stas_po12</span></div>
                             <div class="meta">Telegram: <span>@Ckvnio</span></div>
                         </div>
                     </div>
 
                     <div class="user-card role-group admin">
                         <div class="avatar-box">
-                            <img src="https://www.roblox.com/headshot-thumbnail/image?username=Pulsarchik_RP&width=150&height=150&format=png" alt="Pulsarchik_RP">
+                            <img src="https://www.roblox.com/headshot-thumbnail/image?username=Pulsarchik_RP1131&width=150&height=150&format=png" alt="Pulsarchik_RP1131">
                         </div>
                         <div class="user-info">
                             <div class="role-name">⭐ R6 Власник Сервера</div>
-                            <div class="meta">Username: <span>Pulsarchik_RP</span></div>
+                            <div class="meta">Roblox Username: <span>Pulsarchik_RP1131</span></div>
                             <div class="meta">Telegram: <span>Не вказано</span></div>
                         </div>
                     </div>
@@ -528,53 +708,14 @@
             </div>
         </div>
 
-        <div id="struct-tab" class="tab-content">
-            <h1 class="header-title">СПЕЦПІДРОЗДІЛИ (СБС ТА ДБР)</h1>
-            <div class="rules-grid">
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-title">🛡️ СБС — Служба Безпеки Сервера</div>
-                    </div>
-                    <div class="rule-body">
-                        Головний орган внутрішньої безпеки. Відповідає за протидію читерам, доксингу, витоку інформації та захист особистих даних гравців. Співробітники СБС підпорядковуються виключно Керівництву.
-                    </div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-title">⚖️ ДБР — Державне Бюро Розслідувань</div>
-                    </div>
-                    <div class="rule-body">
-                        Розслідує злочини, вчинені вищими посадовими особами, працівниками НПУ, СБУ, ДСНС та Мерії. Контролює корупцію, блат та перевищення повноважень.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="meriya-tab" class="tab-content">
-            <h1 class="header-title">🏛️ МЕРІЯ МІСТА</h1>
-            <div class="rules-grid">
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-title">Повноваження Мера</div>
-                    </div>
-                    <div class="rule-body">Видавництво указів, регулювання податків, виділення бюджетних коштів на фракції та проведення міських заходів.</div>
-                </div>
-                <div class="rule-card">
-                    <div class="rule-header">
-                        <div class="rule-title">Правила відвідування Мерії</div>
-                    </div>
-                    <div class="rule-body">Заборонено перебувати в будівлі у масці чи з відкритою зброєю. Порушення карається арештом та штрафом 15 000 грн.</div>
-                </div>
-            </div>
-        </div>
-
         <footer>
-            Dnipro RP | System ID: <span class="code-tag">380a7rea</span> | Emergency Hamburg [UA]
+            Dnipro RP | System ID: <span style="color: var(--accent-orange); font-family: monospace;">380a7rea</span> | Emergency Hamburg [UA]
         </footer>
 
     </div>
 
     <script>
+        // Переключення між головними вкладками (ліва панель)
         function switchMainTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
@@ -583,26 +724,33 @@
             btn.classList.add('active');
         }
 
+        // Розгортання та згортання шкафчиків правил (аккордеон)
+        function toggleLocker(locker) {
+            locker.classList.toggle('active');
+        }
+
+        // Пошук по шкафчиках
+        function searchRules() {
+            let input = document.getElementById('ruleSearch').value.toLowerCase();
+            let lockers = document.querySelectorAll('#rulesGrid .rule-locker');
+
+            lockers.forEach(locker => {
+                let text = locker.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    locker.style.display = 'block';
+                } else {
+                    locker.style.display = 'none';
+                }
+            });
+        }
+
+        // Фільтрація списку керівництва
         function filterRoles(category) {
             document.querySelectorAll('.role-tab').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
             document.querySelectorAll('.user-card').forEach(card => {
                 if (card.classList.contains(category)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        function searchRules() {
-            let input = document.getElementById('ruleSearch').value.toLowerCase();
-            let cards = document.querySelectorAll('#rulesGrid .rule-card');
-
-            cards.forEach(card => {
-                let text = card.innerText.toLowerCase();
-                if (text.includes(input)) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
