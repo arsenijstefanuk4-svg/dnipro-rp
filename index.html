@@ -1,434 +1,746 @@
-Since you provided the HTML/CSS but the JavaScript was missing (or incomplete), and the encoding in your snippet was broken (Mojibake), I have completely rewritten the functional part of your code.
-
-I have fixed the **collapsible cards**, implemented the **search functionality**, added **Roblox avatar icons** for the owners, and ensured the **UI is responsive and clean**.
-
-### 1. The Full Code (HTML + CSS + JS)
-Replace your current file with this. I have used a clean, modern approach.
-
-```html
 <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dnipro RP | Правила та Законодавство</title>
+    <title>Dnipro RP | Офіційний Регламент та Законодавство</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0908;
-            --bg-secondary: #12100e;
-            --card-bg: #1a1714;
-            --card-open-bg: #221e1a;
+            --bg-color: #120e0c;
+            --card-bg: #1c1511;
+            --card-open-bg: #271e18;
             --accent-orange: #e06c38;
-            --accent-orange-light: #f4845f;
-            --text-main: #f5f5f4;
-            --text-secondary: #a8a29e;
-            --text-muted: #78716c;
-            --border-color: #3d3530;
-            --border-light: #4a4440;
-            --gradient-orange: linear-gradient(135deg, #e06c38 0%, #f4845f 100%);
-            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
-            --shadow-glow: 0 0 20px rgba(224, 108, 56, 0.3);
+            --btn-bg: #322822;
+            --text-main: #f3f4f6;
+            --text-sub: #9ca3af;
+            --fine-color: #f87171;
+            --border-color: #3a2e27;
+            --gold-color: #f59e0b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-color);
+            background-color: var(--bg-color);
             color: var(--text-main);
             display: flex;
-            min-height: 100vh;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Sidebar */
+        /* Системний код зверху ліворуч */
+        .top-left-code {
+            position: absolute;
+            top: 12px;
+            left: 95px;
+            background: rgba(224, 108, 56, 0.15);
+            border: 1px solid var(--accent-orange);
+            color: var(--accent-orange);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            z-index: 100;
+        }
+
+        /* Бокове меню */
         .sidebar {
             width: 80px;
-            background: var(--bg-secondary);
+            background: #18120e;
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px 0;
-            position: fixed;
-            height: 100vh;
-            z-index: 1000;
-        }
-
-        .sidebar-logo {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-orange);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-glow);
+            gap: 15px;
+            z-index: 10;
         }
 
         .side-btn {
             width: 50px;
             height: 50px;
             border-radius: 12px;
-            background: #2a2420;
-            color: var(--text-secondary);
-            border: 1px solid transparent;
+            background: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 1.2rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
-        .side-btn.active {
+        .side-btn:hover, .side-btn.active {
             background: var(--accent-orange);
-            color: white;
-            box-shadow: var(--shadow-glow);
+            color: #fff;
+            box-shadow: 0 0 12px rgba(224, 108, 56, 0.4);
         }
 
-        /* Main Content */
+        /* Основний контейнер */
         .main-container {
-            margin-left: 80px;
-            padding: 40px;
-            width: 100%;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
+            flex: 1;
+            padding: 50px 40px 30px 40px;
+            overflow-y: auto;
         }
 
         .header-title {
-            font-size: 2.5rem;
+            text-align: center;
+            font-size: 2.4rem;
             font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
-        /* Search */
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 40px;
+        .header-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-orange);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Пошук */
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 25px;
             position: relative;
         }
 
-        .search-box {
+        .search-box input {
             width: 100%;
-            padding: 15px 20px 15px 50px;
-            border-radius: 12px;
-            background: var(--card-bg);
+            padding: 12px 20px 12px 45px;
+            border-radius: 25px;
+            background: var(--btn-bg);
             border: 1px solid var(--border-color);
             color: white;
             font-size: 1rem;
             outline: none;
-            transition: 0.3s;
         }
 
-        .search-box:focus {
-            border-color: var(--accent-orange);
-            box-shadow: 0 0 0 3px rgba(224, 108, 56, 0.2);
-        }
-
-        .search-icon {
+        .search-box i {
             position: absolute;
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
+            color: var(--text-sub);
         }
 
-        /* Rules Grid */
+        /* Сітка шкафчиків */
         .rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .rule-card {
+        }/* Шкафчик (аккордеон) */
+        .rule-locker {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 15px;
+            border-radius: 14px;
             overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .rule-card:hover {
+        .rule-locker:hover {
             border-color: var(--accent-orange);
         }
 
-        .rule-header {
-            padding: 20px;
+        .rule-locker-header {
+            padding: 18px 20px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            background: rgba(0,0,0,0.2);
+            cursor: pointer;
+            user-select: none;
+            background: var(--btn-bg);
         }
 
-        .rule-header-left {
+        .rule-locker-title-group {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
-        .rule-number {
-            background: var(--gradient-orange);
-            width: 35px;
-            height: 35px;
+        .rule-num {
+            width: 36px;
+            height: 36px;
+            background: rgba(224, 108, 56, 0.15);
+            color: var(--accent-orange);
+            font-weight: 800;
+            font-size: 1.1rem;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
         }
 
-        .rule-title {
+        .rule-locker-title {
+            font-size: 1.05rem;
             font-weight: 700;
-            font-size: 1.1rem;
         }
 
-        .rule-content {
+        .toggle-icon {
+            color: var(--text-sub);
+            transition: transform 0.3s ease;
+        }
+
+        /* Внутрішність шкафчика */
+        .rule-locker-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
             background: var(--card-open-bg);
+            padding: 0 20px;
         }
 
-        .rule-card.open .rule-content {
-            max-height: 1000px;
+        .rule-locker.active .rule-locker-content {
+            max-height: 2000px; /* Велике значення для розгортання */
+            padding: 18px 20px;
+            border-top: 1px solid var(--border-color);
+            transition: max-height 0.5s ease-in-out;
         }
 
-        .rule-card.open .fa-chevron-down {
+        .rule-locker.active .toggle-icon {
             transform: rotate(180deg);
+            color: var(--accent-orange);
         }
 
         .sub-article {
-            padding: 15px 20px;
-            border-top: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--border-color);
         }
 
-        .sub-header {
-            display: flex;
-            gap: 10px;
+        .sub-article:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .sub-title {
+            font-weight: 700;
+            color: var(--accent-orange);
+            font-size: 0.95rem;
             margin-bottom: 5px;
-            font-weight: 600;
-            color: var(--accent-orange-light);
         }
 
         .sub-desc {
             font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
+            color: #d1d5db;
+            line-height: 1.5;
         }
 
-        .badge {
+        .salary-badge {
             display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold-color);
+            border: 1px solid var(--gold-color);
             padding: 4px 10px;
             border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: #2a2420;
-            border: 1px solid var(--border-color);
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 6px;
         }
 
-        .badge-salary { color: #fbbf24; }
-        .badge-ban { color: #ef4444; }
-
-        /* Admin Section */
-        .admin-section {
-            margin-top: 50px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-            padding-top: 30px;
+        .punishment-badge {
+            display: inline-block;
+            background: rgba(248, 113, 113, 0.15);
+            color: var(--fine-color);
+            border: 1px solid var(--fine-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-top: 6px;
         }
 
-        .admin-grid {
+        /* Розділ "Керівництво" */
+        .roles-layout {
             display: flex;
-            justify-content: center;
             gap: 30px;
-            margin-top: 20px;
         }
 
-        .admin-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
+        .roles-menu {
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .role-tab {
+            padding: 12px 20px;
+            background: var(--btn-bg);
+            border-radius: 12px;
             border: 1px solid var(--border-color);
-            width: 180px;
+            color: var(--text-main);
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
         }
 
-        .admin-avatar {
+        .role-tab:hover, .role-tab.active {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }.roles-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .user-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .avatar-box {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            border: 3px solid var(--accent-orange);
-            margin-bottom: 10px;
+            background: #111;
+            border: 2px solid var(--accent-orange);
+            overflow: hidden;
+            flex-shrink: 0;
         }
 
-        .admin-name {
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-info .role-name {
+            font-size: 1.15rem;
             font-weight: 700;
+        }
+
+        .user-info .meta {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            margin-top: 4px;
+        }
+
+        .user-info .meta span {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
             display: block;
         }
 
-        .admin-role {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .fa-chevron-down {
-            transition: 0.3s;
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 15px;
         }
     </style>
 </head>
 <body>
 
+    <div class="top-left-code">CODE: 380a7rea</div>
+
     <div class="sidebar">
-        <div class="sidebar-logo">DRP</div>
-        <button class="side-btn active" title="Правила"><i class="fa-solid fa-book"></i></button>
-        <button class="side-btn" title="Поліція"><i class="fa-solid fa-shield-halved"></i></button>
-        <button class="side-btn" title="Медики"><i class="fa-solid fa-user-nurse"></i></button>
+        <button class="side-btn active" onclick="switchMainTab('rules-tab', this)" title="Правила"><i class="fa-solid fa-gavel"></i></button>
+        <button class="side-btn" onclick="switchMainTab('court-tab', this)" title="Судова Система"><i class="fa-solid fa-scale-balanced"></i></button>
+        <button class="side-btn" onclick="switchMainTab('sbs-dbr-tab', this)" title="СБС та ДБР"><i class="fa-solid fa-shield-halved"></i></button>
+        <button class="side-btn" onclick="switchMainTab('roles-tab', this)" title="Керівництво"><i class="fa-solid fa-users"></i></button>
     </div>
 
     <div class="main-container">
-        <div class="page-header">
-            <h1 class="header-title">Правила та Законодавство</h1>
-            <p style="color: var(--text-secondary)">Ознайомтесь з правилами сервера Dnipro RP</p>
-        </div>
 
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="ruleSearch" class="search-box" placeholder="Пошук за правилами...">
-        </div>
+        <div id="rules-tab" class="tab-content active">
+            <h1 class="header-title">ЗАГАЛЬНІ ПРАВИЛА ТА РЕГЛАМЕНТ</h1>
 
-        <div class="rules-grid" id="rulesGrid">
-            <!-- Rule Card 1 -->
-            <div class="rule-card" onclick="toggleCard(this)">
-                <div class="rule-header">
-                    <div class="rule-header-left">
-                        <div class="rule-number">1</div>
-                        <div class="rule-title">Медичний Персонал</div>
-                    </div>
-                    <div class="rule-toggle"><i class="fa-solid fa-chevron-down"></i></div>
-                </div>
-                <div class="rule-content">
-                    <div class="sub-article">
-                        <div class="sub-header"><span>1</span> <span>Лікар</span></div>
-                        <div class="sub-desc">Забезпечення медичної допомоги, робота з пацієнтами.</div>
-                        <span class="badge badge-salary"><i class="fa-solid fa-coins"></i> 15,000 ₴ / день</span>
-                    </div>
-                    <div class="sub-article">
-                        <div class="sub-header"><span>2</span> <span>Охорона Мед-центру</span></div>
-                        <div class="sub-desc">Контроль входу та безпека лікарні.</div>
-                        <span class="badge badge-salary"><i class="fa-solid fa-coins"></i> 12,000 ₴ / день</span>
-                    </div>
-                </div>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="ruleSearch" onkeyup="searchRules()" placeholder="Пошук по шкафчиках...">
             </div>
 
-            <!-- Rule Card 2 -->
-            <div class="rule-card" onclick="toggleCard(this)">
-                <div class="rule-header">
-                    <div class="rule-header-left">
-                        <div class="rule-number">2</div>
-                        <div class="rule-title">Обов'язки та Правила</div>
+            <div class="rules-grid" id="rulesGrid">
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">1</div>
+                            <div class="rule-locker-title">Повага, Булінг та Спілкування</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="rule-toggle"><i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">1.1. Заборона булінгу та приниження</div>
+                            <div class="sub-desc">Категорично заборонено цькування, токсична поведінка, приниження гідності гравців у будь-яких чатах.</div>
+                            <div class="punishment-badge">Мут 60-120 хв / Депортація 3-7 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">1.2. Образа Адміністрації</div>
+                            <div class="sub-desc">Неповага, провокація або перешкоджання роботі адміністратора під час вирішення тикету.</div>
+                            <div class="punishment-badge">Мут 180 хв / Депортація до 14 діб</div>
+                        </div>
+                    </div>
+                </div><div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">2</div>
+                            <div class="rule-locker-title">ПДР (Правила Дорожнього Руху)</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">2.1. Зустрічна смуга та Перевищення швидкості</div>
+                            <div class="sub-desc">Умисний рух зустрічною смугою без спецсигналів або небезпечне водіння у місті.</div>
+                            <div class="punishment-badge">Штраф 4 000 - 6 000 грн</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">2.2. NonRP Drive (NRD)</div>
+                            <div class="sub-desc">Їзда по полях, коліях, горах на непідхідних автомобілях (спорткари, седани).</div>
+                            <div class="punishment-badge">Деморган 60 хв / Штраф 10 000 грн</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">2.3. Втеча з місця ДТП</div>
+                            <div class="sub-desc">Залишення місця аварії без оформлення патрулем НПУ.</div>
+                            <div class="punishment-badge">Штраф 8 000 грн + Позбавлення прав</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="rule-content">
-                    <div class="sub-article">
-                        <div class="sub-header"><span>1</span> <span>Дрес-код</span></div>
-                        <div class="sub-desc">Обов'язкове носіння офіційного одягу під час служби.</div>
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">3</div>
+                            <div class="rule-locker-title">Чити, Стороннє ПЗ та Баги</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
-                    <div class="sub-article">
-                        <div class="sub-header"><span>2</span> <span>Робочий Графік</span></div>
-                        <div class="sub-desc">Мінімум 2 години на зміну для отримання зарплати.</div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">3.1. Використання читів</div>
+                            <div class="sub-desc">Будь-які програми (Fly, SpeedHack, Aimbot, ESP, TP) даючі нечесну перевагу.</div>
+                            <div class="punishment-badge">Перманентний бан (Безстроково)</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">3.2. Багоюз та дюп</div>
+                            <div class="sub-desc">Використання помилок карти/скриптів для накопичення грошей чи проходу крізь стіни.</div>
+                            <div class="punishment-badge">Бан від 14 діб до Перманентного + Обнулення</div>
+                        </div>
                     </div>
-                    <div class="sub-article">
-                        <div class="sub-header"><span>3</span> <span>Заборона корупції</span></div>
-                        <div class="sub-desc">Використання посади в особистих цілях заборонено.</div>
-                        <span class="badge badge-ban"><i class="fa-solid fa-ban"></i> Звільнення + Бан</span>
+                </div><div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">4</div>
+                            <div class="rule-locker-title">Non-RP Порушення (DM, PG, OffRP)</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
                     </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">4.1. DM / DB</div>
+                            <div class="sub-desc">Вбивство чи нанесення шкоди без вагомої RP-причини або таран авто.</div>
+                            <div class="punishment-badge">Деморган 120 хв / Депорт до 3 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">4.2. OffRP / LeaveRP</div>
+                            <div class="sub-desc">Вихід з гри під час затримання, перестрілки чи суду.</div>
+                            <div class="punishment-badge">Депорт від 3 до 7 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">4.3. PG (PowerGaming) / NVL</div>
+                            <div class="sub-desc">Удавання із себе "супергероя" (1 проти 3 зі зброєю) або нехтування життям під прицілом.</div>
+                            <div class="punishment-badge">Деморган 90 хв</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">5</div>
+                            <div class="rule-locker-title">Зелені Зони (Green Zone)</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">5.1. Поведінка в ЗЗ</div>
+                            <div class="sub-desc">У лікарнях, поліції, ДСНС, мерії, на спавнах та заправках суворо заборонено стрільбу, викрадення, бійки.</div>
+                            <div class="punishment-badge">Депорт від 3 до 7 діб</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">5.2. Ухід в ЗЗ від погоні</div>
+                            <div class="sub-desc">Спроба заховатися у зеленій зоні під час переслідування поліцією або бандитами.</div>
+                            <div class="punishment-badge">Деморган 180 хв / Депорт 3 доби</div>
+                        </div>
+                    </div>
+                </div><div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">6</div>
+                            <div class="rule-locker-title">Зброя та Ліцензії</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">6.1. Відкрите носіння</div>
+                            <div class="sub-desc">Носіння вогнепальної зброї в руках у громадських місцях без загрози.</div>
+                            <div class="punishment-badge">Конфіскація + Штраф 9 000 грн</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">6.2. Нелегальна зброя</div>
+                            <div class="sub-desc">Купівля або зберігання зброї без офіційної ліцензії МВС.</div>
+                            <div class="punishment-badge">Арешт + Штраф 15 000 грн</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="court-tab" class="tab-content">
+            <h1 class="header-title">🏛 СУДОВА СИСТЕМА ТА СУДДІ</h1>
+
+            <div class="rules-grid">
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">⚖️</div>
+                            <div class="rule-locker-title">Повноваження Суддів та Статус</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Правовий статус Судді</div>
+                            <div class="sub-desc">Суддя є носієм судової влади. Рішення судді є остаточними і обов'язковими для виконання всіма фракціями (НПУ, СБУ, Мерія, ДСНС). Суддя володіє недоторканністю під час виконання обов'язків.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Повноваження Суду</div>
+                            <div class="sub-desc">
+                                <ul>
+                                    <li>Видання ордерів на обшук, затримання та арешт вищих посадовців.</li>
+                                    <li>Розгляд кримінальних справ, переданих від ДБР та СБС.</li>
+                                    <li>Скасування неправомірних штрафів та нарахування компенсацій громадянам.</li>
+                                    <li>Проведення процедури імпічменту Мера чи звільнення генералів.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">💰</div>
+                            <div class="rule-locker-title">Зарплати та Оплата Праці Посадовців</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Офіційні ставки посадовців (за пейдей / зміну)</div>
+                            <div class="sub-desc">Для збереження балансу економіки сервера встановлено фіксовані суми зарплат:</div>
+                            <div class="salary-badge">⚖️ Верховний Суддя: 40 000 грн</div><br>
+                            <div class="salary-badge">👨‍⚖️ Окружний Суддя: 35 000 грн</div><br>
+                            <div class="salary-badge">🏛 Мер міста / Прокурор: 35 000 - 40 000 грн</div><br>
+                            <div class="salary-badge">🛡 Керівництво ДБР / СБС: 30 000 - 35 000 грн</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">📜</div>
+                            <div class="rule-locker-title">Регламент Судового Засідання</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Порядок проведення засідання</div>
+                            <div class="sub-desc">1. Відкриття засідання Суддею.<br>2. Виступ сторони обвинувачення (ДБР / Прокурор).<br>3. Виступ адвоката та підсудного.<br>4. Допити свідків та вивчення фото/відео доказів.<br>5. Винесення вироку.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Порушення порядку у залі суду</div>
+                            <div class="sub-desc">Непокора судді, перебивання, викрикування або зброя у залі суду.</div>
+                            <div class="punishment-badge">Штраф 15 000 грн / Арешт за неповагу до суду</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="sbs-dbr-tab" class="tab-content">
+            <h1 class="header-title">🛡 РЕГЛАМЕНТ СБС ТА ДБР</h1>
+
+            <div class="rules-grid"><div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">🛡</div>
+                            <div class="rule-locker-title">СБС — Служба Безпеки Сервера</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Основний напрямок роботи СБС</div>
+                            <div class="sub-desc">СБС є органом контррозвідки та захисту внутрішнього порядку сервера. Займається викриттям читерів, сливів адмін-інформації, доксингу та забезпеченням безпеки керівництва.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Повноваження СБС</div>
+                            <div class="sub-desc">
+                                <ul>
+                                    <li>Виклик будь-якого гравця на перевірку стороннього ПЗ (чити/софт).</li>
+                                    <li>Безперешкодний доступ на будь-які закриті військові чи державні об'єкти.</li>
+                                    <li>Затримання осіб, підозрюваних у шпигунстві чи зливі даних.</li>
+                                    <li>СБС підпорядковується виключно Засновнику (Stas_po12) та Власнику (Pulsarchik_RP1131).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rule-locker" onclick="toggleLocker(this)">
+                    <div class="rule-locker-header">
+                        <div class="rule-locker-title-group">
+                            <div class="rule-num">🔍</div>
+                            <div class="rule-locker-title">ДБР — Державне Бюро Розслідувань</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="rule-locker-content">
+                        <div class="sub-article">
+                            <div class="sub-title">Сфера діяльності ДБР</div>
+                            <div class="sub-desc">ДБР розслідує злочини, вчинені співробітниками поліції, СБУ, ДСНС, Мерії та Суддями. Борється з корупцією, хабарництвом, "блатом" та превышением повноважень.</div>
+                        </div>
+                        <div class="sub-article">
+                            <div class="sub-title">Повноваження оперативників ДБР</div>
+                            <div class="sub-desc">
+                                <ul>
+                                    <li>Відкриття кримінальних проваджень проти будь-якого держслужбовця.</li>
+                                    <li>Проведення контрольних закупівель та перевірок на хабарі.</li>
+                                    <li>Затримання та допит поліцейських і генералів при наявності доказів.</li>
+                                    <li>Вилучення боді-камер та борт-журналів для проведення слідства.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="roles-tab" class="tab-content">
+            <h1 class="header-title">👑 ВИЩЕ КЕРІВНИЦТВО СЕРВЕРА</h1>
+
+            <div class="roles-layout">
+                <div class="roles-menu">
+                    <button class="role-tab active" onclick="filterRoles('admin')">Адміністрація</button>
+                    <button class="role-tab" onclick="filterRoles('sbs')">Керівництво СБС</button>
+                    <button class="role-tab" onclick="filterRoles('dbr')">Керівництво ДБР</button>
+                </div><div class="roles-list">
+                    
+                    <div class="user-card role-group admin">
+                        <div class="avatar-box">
+                            <img src="https://www.roblox.com/headshot-thumbnail/image?username=Stas_po12&width=150&height=150&format=png" alt="Stas_po12">
+                        </div>
+                        <div class="user-info">
+                            <div class="role-name">👑 R7 Засновник сервера</div>
+                            <div class="meta">Roblox Username: <span>Stas_po12</span></div>
+                            <div class="meta">Telegram: <span>@Ckvnio</span></div>
+                        </div>
+                    </div>
+
+                    <div class="user-card role-group admin">
+                        <div class="avatar-box">
+                            <img src="https://www.roblox.com/headshot-thumbnail/image?username=Pulsarchik_RP1131&width=150&height=150&format=png" alt="Pulsarchik_RP1131">
+                        </div>
+                        <div class="user-info">
+                            <div class="role-name">⭐️ R6 Власник Сервера</div>
+                            <div class="meta">Roblox Username: <span>Pulsarchik_RP1131</span></div>
+                            <div class="meta">Telegram: <span>Не вказано</span></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <!-- Admin Section -->
-        <div class="admin-section">
-            <h2 style="margin-bottom: 20px;">Адміністрація проекту</h2>
-            <div class="admin-grid">
-                <!-- Owner 1 -->
-                <div class="admin-card">
-                    <!-- Use Roblox Thumbnails: https://www.roblox.com/headshot-thumbnail/image?userId=USERID -->
-                    <img src="https://www.roblox.com/headshot-thumbnail/image?userId=12345678&width=150&height=150&format=png" class="admin-avatar" alt="Owner">
-                    <span class="admin-name">FounderName</span>
-                    <span class="admin-role">Засновник</span>
-                </div>
-                <!-- Owner 2 -->
-                <div class="admin-card">
-                    <img src="https://www.roblox.com/headshot-thumbnail/image?userId=87654321&width=150&height=150&format=png" class="admin-avatar" alt="Owner">
-                    <span class="admin-name">AdminName</span>
-                    <span class="admin-role">Власник</span>
-                </div>
-            </div>
-        </div>
+        <footer>
+            Dnipro RP | System ID: <span style="color: var(--accent-orange); font-family: monospace;">380a7rea</span> | Emergency Hamburg [UA]
+        </footer>
+
     </div>
 
     <script>
-        // 1. Fix: Toggle Cards (Open/Close)
-        function toggleCard(card) {
-            // Close all other cards if you want "accordion" style
-            // document.querySelectorAll('.rule-card').forEach(c => { if(c !== card) c.classList.remove('open'); });
+        // Переключення між головними вкладками (ліва панель)
+        function switchMainTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
             
-            card.classList.toggle('open');
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
         }
 
-        // 2. Fix: Search Functionality
-        const searchInput = document.getElementById('ruleSearch');
-        const ruleCards = document.querySelectorAll('.rule-card');
+        // Розгортання та згортання шкафчиків правил (аккордеон)
+        function toggleLocker(locker) {
+            locker.classList.toggle('active');
+        }
 
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
+        // Пошук по шкафчиках
+        function searchRules() {
+            let input = document.getElementById('ruleSearch').value.toLowerCase();
+            let lockers = document.querySelectorAll('#rulesGrid .rule-locker');
 
-            ruleCards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                if (text.includes(query)) {
-                    card.style.display = 'block';
+            lockers.forEach(locker => {
+                let text = locker.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    locker.style.display = 'block';
+                } else {
+                    locker.style.display = 'none';
+                }
+            });
+        }
+
+        // Фільтрація списку керівництва
+        function filterRoles(category) {
+            document.querySelectorAll('.role-tab').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('.user-card').forEach(card => {
+                if (card.classList.contains(category)) {
+                    card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
                 }
             });
-        });
+        }
     </script>
 </body>
 </html>
-```
-
-### What I fixed & added:
-
-1.  **Collapsible "Cabinets" (Cards):**
-    *   **The Problem:** Your CSS had `max-height: 0` but no JavaScript to change it.
-    *   **The Fix:** Added a `toggleCard(this)` function that toggles an `.open` class. The CSS handles the smooth transition (`transition: max-height 0.4s`).
-2.  **Search Engine:**
-    *   **The Problem:** You had a search bar but no logic.
-    *   **The Fix:** I added a JavaScript event listener to the input field. As you type, it checks the text inside every card. If the word isn't found, the card is hidden (`display: none`).
-3.  **Icons (FontAwesome):**
-    *   **The Problem:** You were missing the proper CSS link for FontAwesome.
-    *   **The Fix:** Added the CDN link. Now icons like `<i class="fa-solid fa-ban">` will actually appear.
-4.  **Roblox Admin Avatars:**
-    *   **The Feature:** I added an "Admin Section" at the bottom.
-    *   **The Trick:** I used the Roblox API URL: `https://www.roblox.com/headshot-thumbnail/image?userId=USERID`. 
-    *   **Action Required:** In the code, find `userId=12345678` and replace those numbers with the **actual Roblox User IDs** of the owners.
-5.  **Encoding:** 
-    *   Removed all the weird symbols (like `РћР±РѕРІ'СЏР·РєРё`) and replaced them with clean Ukrainian text.
-
-### How to customize the Admins:
-Find this part of the code:
-`<img src="https://www.roblox.com/headshot-thumbnail/image?userId=12345678..."`
-Change `12345678` $\rightarrow$ `Your_Roblox_ID`
-Change `FounderName` $\rightarrow$ `Your_Nickname`
